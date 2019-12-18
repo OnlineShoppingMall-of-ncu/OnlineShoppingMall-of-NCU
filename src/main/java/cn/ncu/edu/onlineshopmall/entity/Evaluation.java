@@ -1,9 +1,9 @@
 package cn.ncu.edu.onlineshopmall.entity;
 
-public class evaluation {
+public class Evaluation {
     private int evaluationid;
     private String username;
-    private int commidity;
+    private int commidityid;
     private String content;
 
     public int getEvaluationid() {
@@ -22,12 +22,12 @@ public class evaluation {
         this.username = username;
     }
 
-    public int getCommidity() {
-        return commidity;
+    public int getCommidityid() {
+        return commidityid;
     }
 
-    public void setCommidity(int commidity) {
-        this.commidity = commidity;
+    public void setCommidityid(int commidityid) {
+        this.commidityid = commidityid;
     }
 
     public String getContent() {
