@@ -4,7 +4,7 @@ package cn.ncu.edu.onlineshopmall.entity;
 public class User {
         private String username;
         private  String password;
-        private int role;
+        private int  role;
         private String sex;
         private String address;
         private String phone;

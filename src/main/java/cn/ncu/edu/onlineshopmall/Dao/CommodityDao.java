@@ -53,7 +53,7 @@ public interface CommodityDao {
      * 通过商品编号commodityid在表中删除一条商品信息
      */
     @Delete("DELETE from commodity WHERE commodityid = #{commodityid}")
-    void deleteCommodityBycommodity(@Param("commodityid") int commodityid);
+    void deleteCommodityByCommodity(@Param("commodityid") int commodityid);
 
 
 

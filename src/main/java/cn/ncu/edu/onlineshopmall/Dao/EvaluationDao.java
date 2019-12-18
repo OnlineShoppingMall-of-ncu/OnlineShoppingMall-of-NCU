@@ -19,7 +19,7 @@ public interface EvaluationDao {
     **通过评价唯一编号evaluationid来查询评价信息
      */
     @Select("select * from evaluation where evaluationid=#{evaluationid}")
-    Evaluation findEvaluationByEvaluation(@Param("evaluationid") int evaluationid);
+    Evaluation findEvaluationByEvaluationid(@Param("evaluationid") int evaluationid);
 
 
 
@@ -45,8 +45,8 @@ public interface EvaluationDao {
     @Options(useGeneratedKeys = true, keyProperty = "evaluationid")
     @Insert("insert into evaluation ( username, commidityid, content)" +
             "values(#{username}, #{commidityid}, #{content})")
-    void InsertEvaluation(@Param(" username") int username,
-                          @Param("commidityid") String commidityid,
+    void InsertEvaluation(@Param(" username") String username,
+                          @Param("commidityid") int commidityid,
                           @Param("content") String content);
 
 

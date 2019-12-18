@@ -1,6 +1,6 @@
 package cn.ncu.edu.onlineshopmall.entity;
 
-public class ShoppingChar {
+public class ShoppingCar {
     private String username;
     private int commodityid;
 
