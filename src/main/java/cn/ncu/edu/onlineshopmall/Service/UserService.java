@@ -1,6 +1,7 @@
 package cn.ncu.edu.onlineshopmall.Service;
 
 import cn.ncu.edu.onlineshopmall.Dao.UserDao;
+import cn.ncu.edu.onlineshopmall.domain.SearchResponse;
 import cn.ncu.edu.onlineshopmall.entity.User;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -79,4 +80,29 @@ public class UserService {
 
         return userDao.deleteUserByUsername(name);
     }
+
+    public void editUser(User user) {
+        //TODO 编辑用户信息
+    }
+
+    public void multiDelUsers(String ids) {
+        //TODO 批量删除用户
+    }
+
+    /**
+     * 分页查询
+     * @param pageNum
+     * @param pageSize
+     * @param keyword
+     * @return
+     */
+    //TODO 分页查询
+//    public SearchResponse listUser(Integer pageNum, Integer pageSize, String keyword) {
+//        keyword="%"+keyword+"%";
+//        PageHelper.startPage(pageNum,pageSize);
+//        UserExample example = new UserExample();
+//        example.or().andUsernameLike(keyword);
+//        List<User> users = userMapper.selectByExample(example);
+//        return new SearchResponse(((Page)users).getTotal(),users);
+//    }
 }
