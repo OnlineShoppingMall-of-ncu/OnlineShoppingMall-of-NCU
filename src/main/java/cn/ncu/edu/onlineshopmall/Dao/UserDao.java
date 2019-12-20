@@ -31,7 +31,7 @@ public interface UserDao {
      */
     @Insert("insert into user(username，password，role，sex，address,phone,name,idcard)" +
             "values(#{username}, #{password}, #{role}, #{sex}, #{address}，#{phone}，#{name}，#{idcard})")
-    void InsertUser(@Param("username") String username, @Param("password") String password, @Param("role")  int  role,
+    boolean InsertUser(@Param("username") String username, @Param("password") String password, @Param("role")  int  role,
                          @Param("sex") String sex, @Param("address") String address,@Param("phone") String phone,
                        @Param("name") String name,@Param("idcard") String idcard);
 
@@ -41,7 +41,7 @@ public interface UserDao {
     **根据用户名username更新用户身份信息role（注册成为会员）
      */
     @Update("UPDATE user SET role = #{role} WHERE username = #{username}")
-    void updateUserByUR(@Param("username") String username, @Param("role") int role);
+    boolean updateUserByUR(@Param("username") String username, @Param("role") int role);
 
 
 
@@ -49,7 +49,7 @@ public interface UserDao {
      * 通过用户名username在表中删除该用户信息
      */
     @Delete("DELETE from user WHERE username = #{username}")
-    void deleteUserByUsername(@Param("username") String username);
+    boolean deleteUserByUsername(@Param("username") String username);
 
 
 
