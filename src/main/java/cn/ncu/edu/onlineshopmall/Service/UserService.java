@@ -1,11 +1,8 @@
 package cn.ncu.edu.onlineshopmall.Service;
 
 import cn.ncu.edu.onlineshopmall.Dao.UserDao;
-import cn.ncu.edu.onlineshopmall.domain.SearchResponse;
 import cn.ncu.edu.onlineshopmall.entity.User;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.annotation.Resource;
 import java.util.List;
