@@ -1,5 +1,7 @@
 package cn.ncu.edu.onlineshopmall.entity;
 
+
+
 public class Commodity {
     private int commodityid;
     private String decription;

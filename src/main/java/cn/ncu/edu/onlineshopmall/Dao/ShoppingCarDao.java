@@ -36,7 +36,7 @@ public interface ShoppingCarDao {
     /*
      **插入购物车信息
      */
-    @Insert("insert into shoppingcar(username，commodityid)" +
+    @Insert("insert into shoppingcar(username,commodityid)" +
             "values(#{username}，#{commodityid})")
     void InsertShoppingCar(@Param("username") String username, @Param("commodityid") int commodityid);
 
