@@ -27,6 +27,9 @@ public class CommodityService {
         return findAllCommdityByShopid(id);
     }
 
+    public boolean deleteCommodityById(int id){
+        return commodityDao.deleteCommodityByCommodity(id);
+    }
 
 
 }
