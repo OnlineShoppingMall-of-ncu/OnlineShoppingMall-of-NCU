@@ -40,7 +40,7 @@ public class EvaluationService {
      *通过商品唯一编号commidityid来查询评价信息
      *  @return Evaluation
      */
-    public Evaluation findEvaluationByCommidityid(int commidityid){
+    public Evaluation findEvaluationByCommidityid(String commidityid){
         return EvaluationDao.findEvaluationByCommidityid(commidityid);
     }
 
@@ -50,7 +50,7 @@ public class EvaluationService {
      * @param commidityid
      * @param content
      */
-    public void InsertEvaluation(String username,int commidityid,String content){
+    public void InsertEvaluation(String username,String commidityid,String content){
         EvaluationDao.InsertEvaluation(username,commidityid,content);
     }
 
@@ -58,7 +58,7 @@ public class EvaluationService {
      * 通过评价唯一编号evaluationid在表中删除一条评价信息
      * @param evaluationid
      */
-    public void deleteEvaluationByEvaluationid(int evaluationid){
+    public void deleteEvaluationByEvaluationid(String evaluationid){
         EvaluationDao.deleteEvaluationByEvaluationid(evaluationid);
     }
 
@@ -74,7 +74,7 @@ public class EvaluationService {
      * 通过商品唯一编号commidityid在表中删除这一商品的所有评价信息
      * @param commidityid
      */
-    public void deleteEvaluationByCommidityid(int commidityid){
+    public void deleteEvaluationByCommidityid(String commidityid){
         EvaluationDao.deleteEvaluationByCommidityid(commidityid);
     }
 }

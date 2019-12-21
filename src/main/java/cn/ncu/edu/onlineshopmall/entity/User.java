@@ -9,6 +9,21 @@ public class User {
         private String address;
         private String phone;
         private String name;
+
+        public User(String username, String password, int role, String sex, String address, String phone, String name, String idcard) {
+                this.username = username;
+                this.password = password;
+                this.role = role;
+                this.sex = sex;
+                this.address = address;
+                this.phone = phone;
+                this.name = name;
+                this.idcard = idcard;
+        }
+        public User(){
+
+        }
+
         private String idcard;
 
         public String getUsername() {

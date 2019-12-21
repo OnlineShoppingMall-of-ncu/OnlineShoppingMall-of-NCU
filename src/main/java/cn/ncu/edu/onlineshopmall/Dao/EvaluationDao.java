@@ -19,7 +19,7 @@ public interface EvaluationDao {
     **通过评价唯一编号evaluationid来查询评价信息
      */
     @Select("select * from evaluation where evaluationid=#{evaluationid}")
-    Evaluation findEvaluationByEvaluationid(@Param("evaluationid") String evaluationid);
+    Evaluation findEvaluationByEvaluationid(@Param("evaluationid") int evaluationid);
 
 
 
@@ -35,7 +35,7 @@ public interface EvaluationDao {
      **通过商品唯一编号commidityid来查询评价信息
      */
     @Select("select * from evaluation where commidityid=#{commidityid}")
-    List<Evaluation> findEvaluationByCommidityid(@Param("commidityid") String commidityid);
+    Evaluation findEvaluationByCommidityid(@Param("commidityid") String commidityid);
 
 
 
