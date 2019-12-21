@@ -36,7 +36,7 @@ public interface ShopDao {
     /*
      **插入店铺信息,店铺唯一编号不是自增，需要提前设置
      */
-    @Insert("insert into shop(shopid，username)" +
+    @Insert("insert into shop(shopid,username)" +
             "values(#{shopid}, #{username})")
     void InsertShop(@Param("shopid") int shopid, @Param("username") String username);
 

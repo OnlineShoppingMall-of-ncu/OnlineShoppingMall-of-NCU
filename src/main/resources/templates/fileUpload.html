@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <div th:replace="commons/css/css_header_footer::public_css1"/>
+    <div th:replace="commons/js/js_header_footer::public_js1"/>
+    <script th:src="@{/js/ajaxfileupload.js}"></script>
+</head>
+<body>
+    <input type="file" value="上传" name="inputImage" id="inputImage">
+    <input type="button" value="上传" id="upload">
+
+    <a id="downLoad">下载</a>
+</body>
+
+<script>
+    var path = (function() {
+        //获取当前网址
+        var curWwwPath = window.document.location.href;
+        //获取主机地址之后的目录
+        var pathName = window.document.location.pathname;
+        var pos = curWwwPath.indexOf(pathName);
+        //获取主机地址
+        var localhostPath = curWwwPath.substring(0, pos);
+        //获取带"/"的项目名
+        var projectName = pathName.substring(0, pathName.substr(1).indexOf('/') + 1);
+        return {
+            curWwwPath: curWwwPath,
+            pathName: pathName,
+            localhostPath: localhostPath,
+            projectName: projectName,
+            //部署路径
+            deployPath: localhostPath + projectName
+        };
+    })();
+
+    // 文件下载
+    $("a[id=downLoad]").click(function(){
+        window.location.href=path.deployPath+"/fileDown";
+    });
+
+    // 文件上传
+    $("input[id=upload]").click(function() {
+        $.ajaxFileUpload( {
+            url : path.deployPath + "/fileUp", // 处理页面的绝对路径
+            fileElementId : "inputImage", //file空间的id属性
+            dataType : "json",
+            success : function(data) {
+                alert("上传成功");
+            }
+        });
+    });
+</script>
+</html>

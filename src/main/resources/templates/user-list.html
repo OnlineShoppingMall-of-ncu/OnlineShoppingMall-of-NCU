@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{/layout}">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>AdminLTE 2 | General Form Elements</title>
+<!-- Tell the browser to be responsive to screen width -->
+<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+<!-- Bootstrap 3.3.7 -->
+<link rel="stylesheet" th:href="@{/adminlte/bower_components/bootstrap/dist/css/bootstrap.min.css}">
+<!-- Font Awesome -->
+<link rel="stylesheet" th:href="@{/adminlte/bower_components/font-awesome/css/font-awesome.min.css}">
+<!-- Ionicons -->
+<link rel="stylesheet" th:href="@{/adminlte/bower_components/Ionicons/css/ionicons.min.css}">
+<!-- Theme style -->
+<link rel="stylesheet" th:href="@{/adminlte/css/AdminLTE.min.css}">
+<!-- AdminLTE Skins. Choose a skin from the css/skins
+     folder instead of downloading all of them to reduce the load. -->
+<link rel="stylesheet" th:href="@{/adminlte/css/skins/_all-skins.min.css}">
+<link rel="stylesheet" th:href="@{/bootstrap-table/bootstrap-table.css}">
+
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+<![endif]-->
+
+<!-- jQuery 3 -->
+<script th:src="@{/adminlte/bower_components/jquery/dist/jquery.min.js}"></script>
+<!-- Bootstrap 3.3.7 -->
+<script th:src="@{/adminlte/bower_components/bootstrap/dist/js/bootstrap.min.js}"></script>
+<!-- FastClick -->
+<script th:src="@{/adminlte/bower_components/fastclick/lib/fastclick.js}"></script>
+<!-- AdminLTE App -->
+<script th:src="@{/adminlte/js/adminlte.min.js}"></script>
+<!-- AdminLTE for demo purposes -->
+<script th:src="@{/adminlte/js/demo.js}"></script>
+<script th:src="@{/bootstrap-table/bootstrap-table.min.js}"></script>
+<script th:src="@{/bootstrap-table/locale/bootstrap-table-zh-CN.js}"></script>
+<!--模态消息对话框插件-->
+<script th:src="@{/js/sweetalert.min.js}"></script>
+<link rel="stylesheet" type="text/css" th:href="@{/css/sweetalert.css}">
+<link rel="stylesheet" href="https://cdn.bootcss.com/jquery.bootstrapvalidator/0.5.3/css/bootstrapValidator.min.css">
+<script type="text/javascript"
+        src="https://cdn.bootcss.com/jquery.bootstrapvalidator/0.5.3/js/bootstrapValidator.min.js"></script>
+
+
+<!-- Google Font -->
+<link rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+<div class="wrapper">
+
+    <div th:replace="commons/public::toppublic"></div>
+    <!-- Left side column. contains the logo and sidebar -->
+    <div th:replace="commons/public::leftpublic"></div>
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1>
+                用户列表
+            </h1>
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="box box-info">
+                        <div class="box-body">
+                            <div id="toolbar">
+                                <div class="form-inline" role="form">
+                                    <div class="form-group">
+                                        <form action="">
+                                            <label for="keyword">查询用户: </label>
+                                            <input name="keyword" class="form-control" type="text" id="keyword">
+                                        <button id="searchBtn" type="submit" class="btn btn-primary"
+                                                style="margin-left: 5px">
+                                            查询
+                                        </button>
+                                        <!--<a>-->
+                                        <!--<button id="createBtn" type="submit" class="btn btn-info" style="margin-left: 30px">-->
+                                        <!--录入-->
+                                        <!--</button>-->
+                                        <!--</a>-->
+                                        <!--  <button id="deleteBtn" type="submit" class="btn btn-danger">删除</button>-->
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <table id="dataTable" class="table table-hover table-responsive"
+                                   style="table-layout: fixed" >
+                                  <tread>
+                                        <tr>
+                                            <th>用户名</th>
+                                            <th>联系方式</th>
+                                            <th>权限</th>
+                                            <th>地址</th>
+                                            <th>操作</th>
+                                        </tr>
+                                  </tread>
+                                <tbody>
+                                    <tr th:each="tmp:${userlist}">
+                                        <td th:text="${tmp.username}"></td>
+                                        <td th:text="${tmp.phone}"></td>
+                                        <td th:text="${tmp.role}"></td>
+                                        <td th:text="${tmp.address}"></td>
+                                        <td>
+                                            <!--查看按钮-->
+                                            <a class="btn btn-sm btn-primary" th:href="@{/queryuser/(username=${tmp.username})}">查看</a>
+                                            <!--删除按钮-->
+                                            <a class="btn btn-sm btn-danger deleteBtn" th:href="@{/admin/deleteuser/(username=${tmp.username})}">删除</a>
+
+                                        </td>
+                                    </tr>
+
+                                </tbody>
+
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /.row -->
+        </section>
+        <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+    <form id="deleteEmpForm"  method="post">
+        <input type="hidden" name="_method" value = "delete" />
+    </form>
+
+    <div th:replace="commons/public::footpublic"></div>
+    <div th:replace="commons/public::controlpublic"></div>
+    <!-- Control Sidebar -->
+
+    <!-- /.control-sidebar -->
+    <!-- Add the sidebar's background. This div must be placed
+         immediately after the control sidebar -->
+    <div class="control-sidebar-bg"></div>
+</div>
+<!-- ./wrapper -->
+<!--
+<script>
+    $('#dataTable').bootstrapTable({
+        method: 'get',  //Ajax请求
+        url: "/findAlluser", //Ajax请求的地址
+        dataField: "users",       //Ajax请求返回的数据是哪个字段
+        // pageNumber: 1,                //分页初始在第几页
+        // pagination: true,             //是否分页
+        queryParams: queryParams,     //查询参数
+        // sidePagination: 'server',     //后台分页
+        // pageSize: 5,                 //每页默认显示条数
+        // pageList: [5, 10, 20, 50],
+        showRefresh: true,            //刷新按钮
+        clickToSelect: true,          //点击选中当前行
+        buttonsAlign: 'right',
+        toolbar: '#toolbar',
+        showColumns: true,
+        columns: [
+            {
+                title: '全选',
+                field: 'select',
+                checkbox: true,
+                width: 25,
+                align: 'center',
+            },
+            {
+                title: '用户名',
+                field: 'username',
+                width: 160,
+                align: 'center'
+            },
+            {
+                title: '用户姓名',
+                field: 'name',
+                width: 160,
+                align: 'center'
+            },
+            {
+                title: '性别',
+                field: 'sex',
+                width: 160,
+                align: 'center'
+            },
+            {
+                title: '联系电话',
+                field: 'phone',
+                width: 160,
+                align: 'center'
+            },
+            {
+                title: '编辑',
+                width: 50,
+                formatter: function (value, row, index, field) {
+                    return [
+                        '<a class="edit ml10" href="javascript:void(0)" title="Edit">',
+                        '<i class="glyphicon glyphicon-edit"></i>',
+                        '</a>',
+                    ].join('');
+                },
+                events: {
+                    'click .edit': function (e, value, row, index) {
+                        edit(row.username);
+                    }
+                },
+                align: 'center'
+            },
+            {
+                title: '删除',
+                width: 50,
+                formatter: function (value, row, index, field) {
+                    return [
+                        '<a class="remove ml10" href="javascript:void(0)" title="Delete">',
+                        '<i class="glyphicon glyphicon-trash"></i>',
+                        '</a>',
+                    ].join('');
+                },
+                events: {
+                    'click .remove': function (e, value, row, index) {
+                        swal({
+                                title: '您是否要删除?',
+                                text: '你将无法恢复所删除的用户信息!',
+                                type: 'warning',
+                                showCancelButton: true,
+                                confirmButtonText: '删除',
+                                cancelButtonText: '返回',
+                                closeOnConfirm: false,
+                                closeOnCancel: false
+                            },
+                            function (isConfirm) {
+                                if (isConfirm) {
+                                    $.ajax({
+                                        url: "/deleteuser?username=" + row.username,
+                                        type: "delete",
+                                        success: function (result) {
+                                            if (result) {
+                                                swal(result.msg);
+                                                $("#dataTable").bootstrapTable('remove', {
+                                                    field: 'username',
+                                                    values: [(row.username)]
+                                                });
+                                            } else {
+                                                console.log("失败");
+                                            }
+                                        }
+                                    });
+                                } else if (isConfirm === false) {
+                                    swal(
+                                        '已取消',
+                                        '您取消了删除操作',
+                                        'error'
+                                    );
+
+                                }
+                            });
+                    }
+                },
+                align: 'center'
+            },
+        ],
+        locale: 'zh-CN',
+        responseHandler: function (data) {
+            return data;
+        }
+    });
+
+
+    function queryParams(params) {
+        var keyword = $('#keyword').val();
+        keyword = $.trim(keyword);
+        return {
+            pageSize: params.limit,
+            pageNum: params.offset / params.limit + 1,
+            keyword: keyword
+        }
+    }
+
+    //根据选中的username得到用户的信息
+    function edit(username) {
+        $.ajax({
+            type: "GET",
+            url: "/queryuser?username=" + username,
+            dataType: "json",
+            success: function (data) {
+                if (data) {
+                    var user = data;
+                    $('#editUserName').val(user.username);
+                    $('#editName').val(user.name);
+                    $('#editSex').val(user.sex);
+                    $('#editPhone').val(user.phone);
+                    $('#editUserModal').modal();
+                } else {
+                    alert("请重新勾选")
+                }
+            }
+        });
+    }
+
+    //点击保存按钮触发事件保存用户的信息
+    function editRequest() {
+        // 表单验证
+        $('#editForm').bootstrapValidator({
+            message: '信息输入错误',
+            feedbackIcons: {
+                valid: 'glyphicon glyphicon-ok',
+                invalid: 'glyphicon glyphicon-remove',
+                validating: 'glyphicon glyphicon-refresh'
+            },
+            fields: {
+                username: {
+                    validators: {
+                        notEmpty: {
+                            message: '输入错误'
+                        }
+                    }
+                },
+                name: {
+                    validators: {
+                        notEmpty: {
+                            message: '姓名不能为空'
+                        }
+                    }
+
+                },
+                email: {
+                    validators: {
+                        notEmpty: {
+                            message: '邮箱不能为空'
+                        },
+                        emailAddress: {
+                            message: '邮箱地址格式有误'
+                        }
+                    }
+                },
+                phone: {
+                    validators: {
+                        notEmpty: {
+                            message: '手机号不能为空'
+                        },
+                        regexp: {
+                            regexp: /^1\d{10}$/,
+                            message: '手机号格式错误'
+                        }
+                    }
+                },
+
+            }
+        });
+        //校验数据
+        $('#editForm').data('bootstrapValidator').validate();
+        if (!$('#editForm').data('bootstrapValidator').isValid()) {
+            return;
+        }
+
+
+        var username = $('#editUserName').val();
+        var name = $('#editName').val();
+        var email = $('#editEmail').val();
+        var phone = $('#editPhone').val();
+        $.ajax({
+            type: "Post",
+            url: "/customers/edit",
+            data: {
+                username: username,
+                name: name,
+                email: email,
+                phone: phone,
+            },
+            success: function (result) {
+                $('#editUserModal').modal('hide');
+                swal(result.msg);
+                $('#dataTable').bootstrapTable("refresh", {silent: true});
+            }, error: function () {
+                alert("错误！！");
+            }
+        });
+    }
+
+
+    $("#deleteBtn").click(function () {
+        var selects = $('#dataTable').bootstrapTable('getSelections');//得到选中的数据
+        if (selects.length === 0) {
+            swal('请选择要删除的用户');
+            return false;
+        } else {
+            swal({
+                    title: '您是否要删除?',
+                    text: '你将无法恢复所删除的用户信息!',
+                    type: 'warning',
+                    showCancelButton: true,
+                    confirmButtonText: '删除',
+                    cancelButtonText: '返回',
+                    closeOnConfirm: false,
+                    closeOnCancel: false
+                },
+                function (isConfirm) {
+                    if (isConfirm) {
+                        var idArr = [];
+                        for (var i = 0; i < selects.length; i++) {
+                            idArr.push(selects[i].username);
+                        }
+                        $.ajax({
+                            url: '/multiDel',
+                            data: {
+                                ids: idArr.join(",")
+                            },
+                            success: function (result) {
+                                swal(result.msg);
+                                $("#dataTable").bootstrapTable('remove', {field: 'username', values: idArr});
+                            }
+                        });
+                    } else if (isConfirm === false) {
+                        swal(
+                            '已取消',
+                            '您取消了删除操作',
+                            'error'
+                        );
+
+                    }
+                });
+        }
+    })
+
+
+    $('#searchBtn').click(function () {
+        $('#dataTable').bootstrapTable('refresh', {url: '/findAlluser'});
+    });
+
+</script>
+-->
+<!--弹出层引入-->
+<div th:replace="/commons/modal::editUserModal"></div>
+</body>
+</html>

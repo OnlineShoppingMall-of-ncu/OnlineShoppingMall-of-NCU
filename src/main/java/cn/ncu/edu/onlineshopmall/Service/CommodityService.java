@@ -2,14 +2,9 @@ package cn.ncu.edu.onlineshopmall.Service;
 
 import cn.ncu.edu.onlineshopmall.Dao.CommodityDao;
 import cn.ncu.edu.onlineshopmall.entity.Commodity;
-import cn.ncu.edu.onlineshopmall.entity.User;
-import org.springframework.boot.web.servlet.server.Session;
+import cn.ncu.edu.onlineshopmall.entity.ImagePath;
 import org.springframework.stereotype.Service;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-
 import javax.annotation.Resource;
-import javax.servlet.http.HttpSession;
 import java.util.List;
 import java.util.Map;
 
@@ -27,6 +22,22 @@ public class CommodityService {
         return findAllCommdityByShopid(id);
     }
 
+    public boolean deleteCommodityById(String id){
+        return commodityDao.deleteCommodityByCommodity(id);
+    }
+    public boolean addGoods(Commodity goods){
+        return commodityDao.InsertCommodity(
+                goods.getCommodityid(),
+                goods.getDecription(),
+                goods.getCategory(),
+                goods.getPrice(),
+                goods.getShopid()
+        );
+    }
+    public void addImagePath(ImagePath imagePath){
+
+        //imagePathMapper.insertSelective(imagePath);
+    }
 
 
 }

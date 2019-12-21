@@ -19,7 +19,7 @@ public interface CommodityDao {
     **通过商品编号commodityid来查询商品
      */
     @Select("SELECT * FROM commodity WHERE commodityid = #{commodityid}")
-    Commodity findCommodityByCommodity(@Param("commodityid") int commodityid);
+    Commodity findCommodityByCommodity(@Param("commodityid") String commodityid);
 
 
 
@@ -42,9 +42,10 @@ public interface CommodityDao {
     /*
     **插入5个商品信息,商品编号不是自增，需要提前设置
      */
-    @Insert("insert into commodity(commodityid，decription，Category，price，shopid)" +
+    //TODO 修改商品表，添加图片信息
+    @Insert("insert into commodity(commodityid,decription,Category,price,shopid)" +
             "values(#{commodityid}, #{decription}, #{Category}, #{price}, #{shopid})")
-    void InsertCommodity(@Param("commodityid") int commodityid, @Param("decription") String decription, @Param("Category") String Category,
+    boolean InsertCommodity(@Param("commodityid") String commodityid, @Param("decription") String decription, @Param("Category") String Category,
                          @Param("price") float price, @Param("shopid") int shopid);
 
 
@@ -53,7 +54,7 @@ public interface CommodityDao {
      * 通过商品编号commodityid在表中删除一条商品信息
      */
     @Delete("DELETE from commodity WHERE commodityid = #{commodityid}")
-    void deleteCommodityByCommodity(@Param("commodityid") int commodityid);
+    boolean deleteCommodityByCommodity(@Param("commodityid") String commodityid);
 
 
 
@@ -61,7 +62,7 @@ public interface CommodityDao {
      * 通过商品分类Category在表中删除这一分类的所有商品信息
      */
     @Delete("DELETE from commodity WHERE Category = #{Category}")
-    void deleteCommodityByCategory(@Param("Category") String Category);
+    boolean deleteCommodityByCategory(@Param("Category") String Category);
 
 
 
@@ -69,7 +70,7 @@ public interface CommodityDao {
      * 通过商品所属的店铺号shopid在表中删除这一店铺的所有商品信息
      */
     @Delete("DELETE from commodity WHERE shopid = #{shopid}")
-    void deleteCommodityByShopid(@Param("shopid") int shopid);
+    boolean deleteCommodityByShopid(@Param("shopid") int shopid);
 
 
 }
