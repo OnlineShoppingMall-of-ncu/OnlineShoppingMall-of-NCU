@@ -72,5 +72,4 @@ public interface CommodityDao {
     @Delete("DELETE from commodity WHERE shopid = #{shopid}")
     boolean deleteCommodityByShopid(@Param("shopid") int shopid);
 
-
 }

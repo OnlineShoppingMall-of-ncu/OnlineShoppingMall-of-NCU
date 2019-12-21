@@ -1,11 +1,14 @@
 package cn.ncu.edu.onlineshopmall.Controller.admin;
 
 import cn.ncu.edu.onlineshopmall.Service.CommodityService;
+import cn.ncu.edu.onlineshopmall.Service.ShopService;
 import cn.ncu.edu.onlineshopmall.entity.Commodity;
 import cn.ncu.edu.onlineshopmall.entity.ImagePath;
+import cn.ncu.edu.onlineshopmall.entity.Shop;
 import cn.ncu.edu.onlineshopmall.entity.User;
 import cn.ncu.edu.onlineshopmall.util.ImageUtil;
 import cn.ncu.edu.onlineshopmall.util.UUIDUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -21,17 +24,20 @@ import java.util.Date;
 @RequestMapping("/goods")
 public class CommpdityController {
 
-    @Resource
+    @Autowired
     private CommodityService  commodityService;
+
+    @Autowired
+    private ShopService shopService;
 
     @RequestMapping("searchAllGoods")
     public String SerchAll(Model model, HttpSession Session){
-        User user=(User)Session.getAttribute("LoginUser");
+        User user=(User)Session.getAttribute("admin");
         if(user.getRole()==3)
             model.addAttribute("GoodsList",commodityService.findAllCommodity());
-        else {
-            int shopid=1;
-                    model.addAttribute("MyGoodList", commodityService.findAllCommdityByShopid(shopid));
+        else  if (user.getRole()==2){
+            Shop shop=shopService.findShopByUsername(user.getUsername());
+            model.addAttribute("MyGoodList", commodityService.findAllCommdityByShopid(shop.getShopid()));
         }
         return "goods-list";
     }

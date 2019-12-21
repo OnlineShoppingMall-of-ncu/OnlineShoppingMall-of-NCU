@@ -19,7 +19,7 @@ public class CommodityService {
     }
 
     public List<Commodity> findAllCommdityByShopid( int id){
-        return findAllCommdityByShopid(id);
+        return commodityDao.findCommodityByShopid(id);
     }
 
     public boolean deleteCommodityById(String id){
@@ -33,10 +33,6 @@ public class CommodityService {
                 goods.getPrice(),
                 goods.getShopid()
         );
-    }
-    public void addImagePath(ImagePath imagePath){
-
-        //imagePathMapper.insertSelective(imagePath);
     }
 
 
