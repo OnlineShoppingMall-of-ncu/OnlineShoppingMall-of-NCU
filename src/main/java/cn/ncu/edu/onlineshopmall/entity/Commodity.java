@@ -3,19 +3,21 @@ package cn.ncu.edu.onlineshopmall.entity;
 
 
 public class Commodity {
-    private int commodityid;
+    private String commodityid;
     private String decription;
     private String Category;
     private float price;
+
+    public void setCommodityid(String commodityid) {
+        this.commodityid = commodityid;
+    }
+
     private int shopid;
 
-    public int getCommodityid() {
+    public String getCommodityid() {
         return commodityid;
     }
 
-    public void setCommodityid(int commodityid) {
-        this.commodityid = commodityid;
-    }
 
     public String getDecription() {
         return decription;

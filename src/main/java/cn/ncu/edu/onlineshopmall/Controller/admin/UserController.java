@@ -19,7 +19,7 @@ public class UserController {
 
     /**
      * 查询所有用户
-     * @return
+     * @returnz
      */
     @RequestMapping("findAlluser")
     public String findAll(Map<String,List<User>> map){
