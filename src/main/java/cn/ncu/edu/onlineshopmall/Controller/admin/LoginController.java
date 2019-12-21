@@ -35,14 +35,14 @@ public class LoginController {
     @RequestMapping(value = "/confirmLogin",method = RequestMethod.POST)
     public String confirmLogin(@RequestParam("username")String username, @RequestParam("password") String password, Model model, HttpServletRequest request){
 
-        User LoginUser = userService.findUserByUsername(username);
-        if (LoginUser == null||!(LoginUser.getPassword().equals(password))){
+        User admin = userService.findUserByUsername(username);
+        if (admin == null||!(admin.getPassword().equals(password))){
             model.addAttribute("errorMsg", "用户名或密码错误");
             return "admin-login";
         }else
             {
             HttpSession session = request.getSession();
-            session.setAttribute("LoginUser",LoginUser);
+            session.setAttribute("admin",admin);
             return "redirect:/admin/success";
         }
     }

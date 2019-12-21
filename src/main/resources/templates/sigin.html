@@ -3,8 +3,8 @@
 <!--[if IE 9 ]> <html lang="en" dir="ltr" class=" ie9"> <![endif]-->
 <!--[if IE 10 ]> <html lang="en" dir="ltr" class=" ie10"> <![endif]-->
 <!--[if (gt IE 10)|!(IE)]><!-->
-<html lang="en" dir="ltr"  xmlns:th="http://www.thymeleaf.org"
-      xmlns:vertical-align="http://www.w3.org/1999/xhtml" xmlns:http="http://www.w3.org/1999/xhtml">
+<html lang="en" dir="ltr" xmlns:th="http://www.thymeleaf.org"
+      xmlns:vertical-align="http://www.w3.org/1999/xhtml">
 <!--<![endif]-->
 
 <head>
@@ -13,11 +13,6 @@
 </head>
 
 <body id="body" class="wide-layout preloader-active">
-
-     
-
-
-
     <!--[if lt IE 9]>
         <p class="browserupgrade alert-error">
         	You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.
@@ -31,9 +26,6 @@
         </div>
     </noscript>
 
-    <!-- ––––––––––––––––––––––––––––––––––––––––– -->
-    <!-- PRELOADER                                 -->
-    <!-- ––––––––––––––––––––––––––––––––––––––––– -->
     <!-- Preloader -->
     <div id="preloader" class="preloader">
         <div class="loader-cube">
@@ -49,7 +41,7 @@
     <!-- ––––––––––––––––––––––––––––––––––––––––– -->
     <div id="pageWrapper" class="page-wrapper">
         <!-- –––––––––––––––[ HEADER ]––––––––––––––– -->
-        <div th:replace="commons/header::public_header"></div>
+        <header th:replace="commons/header :: public_header"></header>
         <!-- –––––––––––––––[ HEADER ]––––––––––––––– -->
 
         <!-- –––––––––––––––[ PAGE CONTENT ]––––––––––––––– -->
@@ -57,63 +49,42 @@
             <div class="page-container ptb-60">
                 <div class="container">
                     <section class="sign-area panel p-40">
-                        <h3 class="sign-title">注册 <small>Or <a th:href="@{/users/login}" class="color-green">登录</a></small></h3>
+                        <h3 class="sign-title">登录 <small>Or <a href="/users/register" class="color-green">注册</a></small></h3>
                         <div class="row row-rl-0">
                             <div class="col-sm-6 col-md-7 col-left">
-                                <form class="p-40" th:action="@{/users/register}"  method="post" >
+                                <form class="p-40" th:action="@{/users/loginconfirm}" method="post" >
                                     <div class="form-group">
-                                        <label class="sr-only">用户名：</label>
-                                        <input required="true" type="text" id="username" name="username" class="form-control input-lg" th:placeholder="用户名">
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="sr-only">密码：</label>
-                                        <input required="true" type="password" id="password" name="password" class="form-control input-lg" th:placeholder="密码">
+                                        <label class="sr-only">用户名</label>
+                                        <input type="text" id="email" name="username" class="form-control input-lg" th:placeholder="用户名">
                                     </div>
                                     <div class="form-group">
-                                        <label class="sr-only">确认密码：</label>
-                                        <input required="true" type="password" id="repassword" name="repassword"  class="form-control input-lg" placeholder="再次输入密码">
+                                        <label class="sr-only">密码</label>
+                                        <input type="password" id="password" name="password" class="form-control input-lg" placeholder="密码">
                                     </div>
-                                    <div class="checkbox i-checks">
-                                      <p>请选择身份：</p>
-                                         <label>
-                                            普通用户:
-                                          <input  type="radio" name="role" value="1">
-                                          </label>
-                                          <label>
-                                            会员&nbsp&nbsp:
-                                            <input name = "role" type="radio" value="2">
-                                          </label>
-                                    </div>
+<!--                                    <div class="form-group" style="width: 140px">-->
 
-                                    <div class="form-group">
-                                        <label class="sr-only">性别：</label>
-                                        <input required="true" type="text" id="sex" name="sex" class="form-control input-lg" th:placeholder="性别">
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="sr-only">地址：</label>
-                                        <input required="true" type="text" id="address" name="address" class="form-control input-lg" th:placeholder="地址">
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="sr-only">电话：</label>
-                                        <input required="true" type="text" id="phone" name="phone" class="form-control input-lg" th:placeholder="电话">
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="sr-only">真实姓名：</label>
-                                        <input required="true" type="text" id="name" name="name" class="form-control input-lg" th:placeholder="真实姓名">
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="sr-only">身份证号：</label>
-                                        <input required="true" type="text" class="form-control" id="idcard"
-                                               name="idcard" th:placeholder="身份证号">
-                                    </div>
+<!--                                        <input type="text" class="form-control" id="confirmlogo"-->
+<!--                                               name="confirmlogo" placeholder="验证码" >-->
+<!--                                        <img th:src="@{/getKaptchaImage}" width="80" height="34"-->
+<!--                                             class="captcha changeCaptcha pull-left margin-r-5" alt="验证码" />-->
+<!--                                        <a href="javascript:void(0)" class="changeCaptcha">换一张</a>-->
+<!--                                    </div>-->
+
+<!--                                    <div class="form-group">-->
+<!--                                        <a href="#" class="forgot-pass-link color-green">忘记密码?</a>-->
+<!--                                    </div>-->
+<!--                                    <div class="custom-checkbox mb-20">-->
+<!--                                        <input type="checkbox" id="remember_account" checked>-->
+<!--                                        <label class="color-mid" for="remember_account">保存密码</label>-->
+<!--                                    </div>-->
                                     <p style="color:red" th:text="${msg}" th:if="${not #strings.isEmpty(msg)}"></p>
-                                    <button type="submit"  class="btn btn-block btn-lg">注册</button>
+                                    <button type="submit" class="btn btn-block btn-lg">登录</button>
                                 </form>
                             </div>
                             <div class="col-sm-6 col-md-5 col-right">
                                 <div class="social-login p-40">
                                     <div class="text-center color-mid">
-                                        已经注册过账号? <a th:href="@{/users/login}" class="color-green">登录</a>
+                                        Need an Account ? <a href="/users/register" class="color-green">Create Account</a>
                                     </div>
                                 </div>
                             </div>
@@ -227,14 +198,10 @@
         </section>
         <!-- –––––––––––––––[ FOOTER ]––––––––––––––– -->
         <div th:replace="commons/footer::public_footer"></div>
+
         <!-- –––––––––––––––[ END FOOTER ]––––––––––––––– -->
 
     </div>
-    <!-- ––––––––––––––––––––––––––––––––––––––––– -->
-    <!-- END WRAPPER                               -->
-    <!-- ––––––––––––––––––––––––––––––––––––––––– -->
-
-
     <!-- ––––––––––––––––––––––––––––––––––––––––– -->
     <!-- BACK TO TOP                               -->
     <!-- ––––––––––––––––––––––––––––––––––––––––– -->
@@ -245,5 +212,13 @@
     <div th:replace="commons/js/js_header_footer :: public_js1"></div>
 
 </body>
+
+<script>
+    //切换验证码
+    $(document).on('click', '.changeCaptcha', function () {
+        var url = "/getKaptchaImage";
+        $(".captcha").attr("src", url);
+    })
+</script>
 
 </html>

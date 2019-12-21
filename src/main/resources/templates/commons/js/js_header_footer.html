@@ -1,0 +1,48 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<body>
+
+<div th:fragment="public_js1">
+    <!-- (!) Placed at the end of the document so the pages load faster -->
+
+    <!-- ––––––––––––––––––––––––––––––––––––––––– -->
+    <!-- Initialize jQuery library                 -->
+    <!-- ––––––––––––––––––––––––––––––––––––––––– -->
+    <script th:src="@{/assets/js/jquery-1.12.3.min.js}"></script>
+
+
+    <!-- ––––––––––––––––––––––––––––––––––––––––– -->
+    <!-- Latest compiled and minified Bootstrap    -->
+    <!-- ––––––––––––––––––––––––––––––––––––––––– -->
+    <script type="text/javascript" th:src="@{/assets/js/bootstrap.min.js}"></script>
+
+
+    <!-- ––––––––––––––––––––––––––––––––––––––––– -->
+    <!-- JavaScript Plugins                        -->
+    <!-- ––––––––––––––––––––––––––––––––––––––––– -->
+    <!-- (!) Include all compiled plugins (below), or include individual files as needed -->
+
+    <!-- Modernizer JS -->
+    <script th:src="@{/assets/vendors/modernizr/modernizr-2.6.2.min.js}"></script>
+
+    <!-- Owl Carousel -->
+    <script type="text/javascript" th:src="@{/assets/vendors/owl-carousel/owl.carousel.min.js}"></script>
+
+    <!-- FlexSlider -->
+    <script type="text/javascript" th:src="@{/assets/vendors/flexslider/jquery.flexslider-min.js}"></script>
+
+    <!-- Coutdown -->
+    <script type="text/javascript" th:src="@{/assets/vendors/countdown/jquery.countdown.js}"></script>
+
+    <!-- ––––––––––––––––––––––––––––––––––––––––– -->
+    <!-- Custom Template JavaScript                   -->
+    <!-- ––––––––––––––––––––––––––––––––––––––––– -->
+    <script type="text/javascript" th:src="@{/assets/js/main.js}"></script>
+
+    <script th:src="@{/assets/layer/layer.js}"></script>
+    <script th:src="@{/js/bootstrap3-typeahead.js}"></script>
+    <script th:src="@{/js/search.js}"></script>
+</div>
+
+</body>
+</html>

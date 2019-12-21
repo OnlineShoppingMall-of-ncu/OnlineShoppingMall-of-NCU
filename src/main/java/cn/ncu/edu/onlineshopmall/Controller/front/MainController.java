@@ -1,4 +1,4 @@
-package cn.ncu.edu.onlineshopmall.Controller.font;
+package cn.ncu.edu.onlineshopmall.Controller.front;
 
 import cn.ncu.edu.onlineshopmall.Service.CommodityService;
 import cn.ncu.edu.onlineshopmall.entity.Commodity;
@@ -9,9 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 @Controller
 public class MainController {
