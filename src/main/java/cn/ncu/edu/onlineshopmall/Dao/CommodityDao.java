@@ -43,10 +43,10 @@ public interface CommodityDao {
     **插入5个商品信息,商品编号不是自增，需要提前设置
      */
     //TODO 修改商品表，添加图片信息
-    @Insert("insert into commodity(commodityid,decription,Category,price,shopid)" +
-            "values(#{commodityid}, #{decription}, #{Category}, #{price}, #{shopid})")
+    @Insert("insert into commodity(commodityid,decription,Category,price,shopid,path)" +
+            "values(#{commodityid}, #{decription}, #{Category}, #{price}, #{shopid},#{path})")
     boolean InsertCommodity(@Param("commodityid") String commodityid, @Param("decription") String decription, @Param("Category") String Category,
-                         @Param("price") float price, @Param("shopid") int shopid);
+                         @Param("price") float price, @Param("shopid") int shopid,@Param("path")String path);
 
 
 
@@ -71,5 +71,13 @@ public interface CommodityDao {
      */
     @Delete("DELETE from commodity WHERE shopid = #{shopid}")
     boolean deleteCommodityByShopid(@Param("shopid") int shopid);
+
+    /**
+     *
+     * @param commodityid
+     * @return
+     */
+    @Select("select path from commodity where commodityid= #{commodityid}")
+    String findImagePathById(String commodityid);
 
 }

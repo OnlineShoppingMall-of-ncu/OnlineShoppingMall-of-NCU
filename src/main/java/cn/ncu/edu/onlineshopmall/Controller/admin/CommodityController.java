@@ -3,7 +3,6 @@ package cn.ncu.edu.onlineshopmall.Controller.admin;
 import cn.ncu.edu.onlineshopmall.Service.CommodityService;
 import cn.ncu.edu.onlineshopmall.Service.ShopService;
 import cn.ncu.edu.onlineshopmall.entity.Commodity;
-import cn.ncu.edu.onlineshopmall.entity.ImagePath;
 import cn.ncu.edu.onlineshopmall.entity.Shop;
 import cn.ncu.edu.onlineshopmall.entity.User;
 import cn.ncu.edu.onlineshopmall.util.ImageUtil;
@@ -15,14 +14,12 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
-import java.util.Date;
 
 
 @Controller
 @RequestMapping("/goods")
-public class CommpdityController {
+public class CommodityController {
 
     @Autowired
     private CommodityService  commodityService;
@@ -61,19 +58,21 @@ public class CommpdityController {
     public String addGoods(Commodity goods, @RequestParam MultipartFile[] fileToUpload, RedirectAttributes redirectAttributes){
 
         goods.setCommodityid(UUIDUtils.getUUID());
-        commodityService.addGoods(goods);
+
         for (MultipartFile multipartFile : fileToUpload){
             /**
              * 对文件名进行操作防止文件重名
              */
-            //获取原始文件名，并加工处理得到新的文件名
-            //String fileName = goods.getCommodityid()+multipartFile.getOriginalFilename();
+            //获取原始文件名
+            String fileName = multipartFile.getOriginalFilename();
             if(multipartFile != null){
                 //进一步处理文件名，并将文件保存到本地目录中
-                String ImagePath = ImageUtil.imagePath(multipartFile,goods.getCommodityid());
+                String ImagePath = ImageUtil.imagePath(multipartFile,fileName);
                  System.out.println("最后存入数据库的图片名字为："+ImagePath);
+                    goods.setPath(ImagePath);
             }
         }
+        commodityService.addGoods(goods);
         redirectAttributes.addFlashAttribute("successMsg","商品添加成功！");
         return "redirect:/goods/add";
     }

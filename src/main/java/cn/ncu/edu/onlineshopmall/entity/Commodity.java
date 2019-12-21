@@ -8,6 +8,16 @@ public class Commodity {
     private String Category;
     private float price;
 
+    public String getPath() {
+        return path;
+    }
+
+    public void setPath(String path) {
+        this.path = path;
+    }
+
+    private String path;
+
     public void setCommodityid(String commodityid) {
         this.commodityid = commodityid;
     }
