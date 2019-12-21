@@ -9,6 +9,7 @@ import java.util.List;
 
 @Service
 public class EvaluationService {
+
     @Resource
     private EvaluationDao EvaluationDao;
 
@@ -37,21 +38,21 @@ public class EvaluationService {
     }
 
     /**
-     *通过商品唯一编号commidityid来查询评价信息
+     *通过商品唯一编号commodityid来查询评价信息
      *  @return Evaluation
      */
-    public Evaluation findEvaluationByCommidityid(String commidityid){
-        return EvaluationDao.findEvaluationByCommidityid(commidityid);
+    public Evaluation findEvaluationByCommodityid(String commodityid){
+        return EvaluationDao.findEvaluationByCommodityid(commodityid);
     }
 
     /**
      *插入评估信息，evaluationid为自增，自动生成
      * @param username
-     * @param commidityid
+     * @param commodityid
      * @param content
      */
-    public void InsertEvaluation(String username,String commidityid,String content){
-        EvaluationDao.InsertEvaluation(username,commidityid,content);
+    public void InsertEvaluation(String username,String commodityid,String content){
+        EvaluationDao.InsertEvaluation(username,commodityid,content);
     }
 
     /**
@@ -72,9 +73,9 @@ public class EvaluationService {
 
     /**
      * 通过商品唯一编号commidityid在表中删除这一商品的所有评价信息
-     * @param commidityid
+     * @param commodityid
      */
-    public void deleteEvaluationByCommidityid(String commidityid){
-        EvaluationDao.deleteEvaluationByCommidityid(commidityid);
+    public void deleteEvaluationByCommodityid(String commodityid){
+        EvaluationDao.deleteEvaluationByCommodityid(commodityid);
     }
 }

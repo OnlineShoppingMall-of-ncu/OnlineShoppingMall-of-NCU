@@ -3,7 +3,7 @@ package cn.ncu.edu.onlineshopmall.entity;
 public class Evaluation {
     private int evaluationid;
     private String username;
-    private int commidityid;
+    private String commodityid;
     private String content;
 
     public int getEvaluationid() {
@@ -22,12 +22,12 @@ public class Evaluation {
         this.username = username;
     }
 
-    public int getCommidityid() {
-        return commidityid;
+    public String getCommodityid() {
+        return commodityid;
     }
 
-    public void setCommidityid(int commidityid) {
-        this.commidityid = commidityid;
+    public void setCommodityid(String commodityid) {
+        this.commodityid = commodityid;
     }
 
     public String getContent() {

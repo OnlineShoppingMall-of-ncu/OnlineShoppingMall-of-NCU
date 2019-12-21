@@ -32,10 +32,10 @@ public interface EvaluationDao {
 
 
     /*
-     **通过商品唯一编号commidityid来查询评价信息
+     **通过商品唯一编号commodityid来查询评价信息
      */
-    @Select("select * from evaluation where commidityid=#{commidityid}")
-    Evaluation findEvaluationByCommidityid(@Param("commidityid") String commidityid);
+    @Select("select *from evaluation where commodityid=#{commodityid}")
+    Evaluation findEvaluationByCommodityid(@Param("commodityid") String commodityid);
 
 
 
@@ -43,10 +43,10 @@ public interface EvaluationDao {
     **插入评估信息，evaluationid为自增，自动生成
      */
     @Options(useGeneratedKeys = true, keyProperty = "evaluationid")
-    @Insert("insert into evaluation ( username, commidityid, content)" +
-            "values(#{username}, #{commidityid}, #{content})")
-    void InsertEvaluation(@Param(" username") String username,
-                          @Param("commidityid") String commidityid,
+    @Insert("insert into evaluation ( username, commodityid, content)" +
+            "values(#{username}, #{commodityid}, #{content})")
+    void InsertEvaluation(@Param("username") String username,
+                          @Param("commodityid") String commodityid,
                           @Param("content") String content);
 
 
@@ -68,10 +68,10 @@ public interface EvaluationDao {
 
 
     /**
-     * 通过商品唯一编号commidityid在表中删除这一商品的所有评价信息
+     * 通过商品唯一编号commodityid在表中删除这一商品的所有评价信息
      */
-    @Delete("DELETE from evaluation WHERE commidityid = #{commidityid}")
-    void deleteEvaluationByCommidityid(@Param("commidityid") String commidityid);
+    @Delete("DELETE from evaluation WHERE commodityid = #{commodityid}")
+    void deleteEvaluationByCommodityid(@Param("commodityid") String commdityid);
 
 
 }
