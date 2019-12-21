@@ -18,8 +18,8 @@ public class ImageUtil {
             path="/usr/upload";
         }
         //生成随机数字并于商品名拼接，防止文件名重复
-       // String fileName = UUID.randomUUID().toString().substring(0,4)+shopName;
-        String fileName=shopName;
+        String fileName = UUID.randomUUID().toString().substring(0,4)+shopName;
+
         File dest = new File(path+"/"+fileName);
         System.out.println("保存的绝对路径为："+dest);
         //判断图片存放位置（图片所在的文件夹）是否存在，若不存在则创建文件夹

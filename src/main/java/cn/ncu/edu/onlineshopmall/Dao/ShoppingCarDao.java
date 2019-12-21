@@ -15,7 +15,8 @@ public interface ShoppingCarDao {
 //    List<ShoppingCar> findAllShoppingCar();
 
 
-
+    @Select("select *from shoppingcar where commodityid=#{commodityid}")
+    ShoppingCar findShopcarByGoodsId(@Param("commodityid")String commodityid);
     /*
      **通过用户名username来查询该用户的购物车信息
      */
@@ -23,22 +24,20 @@ public interface ShoppingCarDao {
     List<ShoppingCar> findShoppingCarByUsername(@Param("username") String username);
 
 
-
-//    !!!!!!!!!!!!!!查询商品信息应该去Commodity里去查，不要来这里找!!!!!!!!!!!!!!!这里只提供商品唯一编号，即商品的主键
-//    /*
-//     **通过用户名username和商品唯一编号commodityid来查询该用户购物车的一个商品信息？？？？
-//     */
-//    @Select("select * from shoppingchar where username=#{username} and shopid=#{shopid}")
-//    ShoppingChar findShoppingCharByUC(@Param("username") String username,@Param("shopid") int shopid);
-
-
+    /**
+     *
+     * @param shopid
+     * @return
+     */
+    @Select("select *from shoppingcar where shopid=#{shopid}")
+    ShoppingCar findShopcarByShopid(@Param("shopid")Integer shopid);
 
     /*
      **插入购物车信息
      */
     @Insert("insert into shoppingcar(username,commodityid)" +
-            "values(#{username}，#{commodityid})")
-    void InsertShoppingCar(@Param("username") String username, @Param("commodityid") int commodityid);
+            "values(#{username},#{commodityid})")
+    void InsertShoppingCar(@Param("username") String username, @Param("commodityid") String commodityid);
 
 
 
@@ -54,7 +53,7 @@ public interface ShoppingCarDao {
      * 通过用户名username和商品编号commodityid在表中删除该条购物车消息
      */
     @Delete("DELETE from shoppingcar WHERE username = #{username} commodityid=#{commodityid}")
-    void deleteShoppingCarByUC(@Param("username") String username,@Param("commodityid") int commodityid);
+    void deleteShoppingCarByUC(@Param("username") String username,@Param("commodityid") String commodityid);
 
 
 

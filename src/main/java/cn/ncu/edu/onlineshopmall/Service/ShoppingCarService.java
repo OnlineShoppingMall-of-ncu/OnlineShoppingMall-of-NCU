@@ -25,7 +25,7 @@ public class ShoppingCarService {
      * @param username
      * @param commodityid
      */
-    public void InsertShoppingCar(String username, int commodityid){
+    public void InsertShoppingCar(String username, String commodityid){
         ShoppingCarDao.InsertShoppingCar(username,commodityid);
     }
 
@@ -42,7 +42,23 @@ public class ShoppingCarService {
      * @param username
      * @param commodityid
      */
-    public void deleteShoppingCarByUC(String username,int commodityid){
+    public void deleteShoppingCarByUC(String username,String commodityid){
         ShoppingCarDao.deleteShoppingCarByUC(username,commodityid);
+    }
+
+    /**
+     * by shopid find
+     * @param shopid
+     */
+    public ShoppingCar findShopCarbyShopid(Integer shopid){
+        return ShoppingCarDao.findShopcarByShopid(shopid);
+    }
+
+    /**
+     *
+     * @param goodsid
+     */
+    public ShoppingCar  findShopCarShopByGoodsId(String goodsid){
+        return  ShoppingCarDao.findShopcarByGoodsId(goodsid);
     }
 }

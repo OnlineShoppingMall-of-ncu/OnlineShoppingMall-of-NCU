@@ -1,0 +1,685 @@
+﻿<!DOCTYPE html>
+<html lang="en" dir="ltr" xmlns:th="http://www.thymeleaf.org">
+<!--<![endif]-->
+
+<head>
+
+    <!-- ––––––––––––––––––––––––––––––––––––––––– -->
+    <!-- META TAGS                                 -->
+    <!-- ––––––––––––––––––––––––––––––––––––––––– -->
+    <meta charset="utf-8">
+    <!-- Always force latest IE rendering engine -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Mobile specific meta -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+    <!-- ––––––––––––––––––––––––––––––––––––––––– -->
+    <!-- PAGE TITLE                                -->
+    <!-- ––––––––––––––––––––––––––––––––––––––––– -->
+    <title>商品详情页</title>
+
+    <!-- ––––––––––––––––––––––––––––––––––––––––– -->
+    <!-- SEO METAS                                 -->
+    <!-- ––––––––––––––––––––––––––––––––––––––––– -->
+    <meta name="description" content="FRIDAY is a responsive multipurpose-ecommerce site template allows you to store coupons and promo codes from different brands and create store for deals, discounts, It can be used as coupon website such as groupon.com and also as online store">
+    <meta name="	black friday, coupon, coupon codes, coupon theme, coupons, deal news, deals, discounts, ecommerce, friday deals, groupon, promo codes, responsive, shop, store coupons">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="CODASTROID">
+
+    <div th:replace="commons/css/css_header_footer :: public_css1"></div>
+
+</head>
+
+<body id="body" class="wide-layout preloader-active">
+
+
+    <div id="preloader" class="preloader">
+        <div class="loader-cube">
+            <div class="loader-cube__item1 loader-cube__item"></div>
+            <div class="loader-cube__item2 loader-cube__item"></div>
+            <div class="loader-cube__item4 loader-cube__item"></div>
+            <div class="loader-cube__item3 loader-cube__item"></div>
+        </div>
+    </div>
+    <!-- End Preloader -->
+    <!-- ––––––––––––––––––––––––––––––––––––––––– -->
+    <!-- WRAPPER                                   -->
+    <!-- ––––––––––––––––––––––––––––––––––––––––– -->
+    <div id="pageWrapper" class="page-wrapper">
+        <!-- –––––––––––––––[ HEADER ]––––––––––––––– -->
+        <div id="header" th:replace="commons/header::public_header"/>
+        <!-- –––––––––––––––[ HEADER ]––––––––––––––– -->
+
+        <!-- –––––––––––––––[ PAGE CONTENT ]––––––––––––––– -->
+        <main id="mainContent" class="main-content">
+            <!-- Page Container -->
+            <div class="page-container ptb-60">
+                <div class="container">
+                    <div class="row row-rl-10 row-tb-20">
+                        <div class="page-content col-xs-12 col-sm-7 col-md-8">
+                            <div class="row row-tb-20">
+                                <div class="col-xs-12">
+                                    <div class="deal-deatails panel">
+                                        <div class="deal-slider">
+                                            <div  id="product_slider" class="flexslider">
+                                                <ul  class="slides">
+                                                        <div align="center" class="shopdetails">
+                                                            <img alt="" style="width: 450px" th:src="@{/pictures/}+${goodsinfo.path}">
+                                                        </div>
+                                                </ul>
+                                            </div>
+                                            <div id="product_slider_nav" class="flexslider flexslider-nav">
+                                                <ul class="slides">
+                                                        <img alt="" th:src="@{/pictures/}+${goodsinfo.path}">
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="deal-body p-20">
+                                            <h3 class="mb-10" th:text="${goodsinfo.category}"></h3>
+                                            <div class="rating mb-10">
+                                                <span class="rating-stars" data-rating="3">
+				                        <i class="fa fa-star-o"></i>
+				                        <i class="fa fa-star-o"></i>
+				                        <i class="fa fa-star-o"></i>
+				                        <i class="fa fa-star-o"></i>
+				                        <i class="fa fa-star-o"></i>
+				                    </span>
+                                            </div>
+                                            <h2 class="price mb-15" th:text="'$'+${goodsinfo.price}"></h2>
+                                            <!--<p class="mb-15" th:text="${goodsInfo['good'].description}"></p>-->
+                                            <p class="mb-20" th:text="${goodsinfo.decription}"></p>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+                                <div class="col-xs-12">
+                                    <div class="posted-review panel p-30">
+                                        <h3 class="h-title"><span>评论</span></h3>
+                                            <div class="review-single pt-30" th:if="${comment!=null}">
+                                            <div class="media">
+                                                <div class="media-left">
+                                                </div>
+                                                <div class="media-body">
+                                                    <div class="review-wrapper clearfix">
+                                                        <ul class="list-inline">
+                                                            <li>
+                                                                <span class="review-holder-name h5" th:text="${comment.username}"></span>
+                                                            </li>
+                                                            <li>
+                                                                <div class="rating">
+                                                                    <span class="rating-stars">
+										                        <i class="fa fa-star-o"></i>
+										                        <i class="fa fa-star-o"></i>
+										                        <i class="fa fa-star-o"></i>
+										                        <i class="fa fa-star-o"></i>
+										                        <i class="fa fa-star-o"></i>
+										                    </span>
+                                                                </div>
+                                                            </li>
+                                                        </ul>
+                                                        <p class="review-date mb-5">
+                                                        <p class="copy" th:text="${comment.content}"></p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+                        <div class="page-sidebar col-md-4 col-sm-5 col-xs-12">
+                            <!-- Blog Sidebar -->
+                            <aside class="sidebar blog-sidebar">
+                                <div class="row row-tb-10">
+                                    <div class="col-xs-12">
+                                        <div class="widget single-deal-widget panel ptb-30 prl-20">
+                                            <div class="widget-body text-center">
+                                                <h2 class="mb-20 h3" th:text="商品id+${goodsinfo.commodityid}"></h2>
+                                                <ul class="deal-meta list-inline mb-10 color-mid">
+                                                    <li><i class="ico fa fa-globe mr-10"></i><a href="store_single_02.html" class="color-mid">Ebay</a></li>
+                                                    <li><i class="ico fa fa-map-marker mr-10"></i>California</li>
+                                                    <li><i class="ico fa fa-shopping-basket mr-10"></i>75 Bought</li>
+                                                </ul>
+                                                <p class="color-muted"></p>
+                                                <div class="price mb-20">
+                                                    <h2 class="price">
+                                                        <span class="price-sale"  th:text="'$'+${goodsinfo.price}"></span>
+                                                    </h2>
+                                                </div>
+                                                <div class="buy-now mb-40">
+                                                    <input id="goodsId" type="hidden" th:value="${goodsinfo.commodityid}">
+                                                    <button id="addtocar" class="btn btn-block btn-lg">
+                                                        <i class="fa fa-shopping-cart font-16 mr-10"></i> 加入购物车
+                                                    </button>
+                                                </div>
+                                                <div class="time-left mb-30">
+                                                    <p class="t-uppercase color-muted">
+                                                        Hurry up Only a few deals left
+                                                    </p>
+                                                    <div class="color-mid font-14 font-lg-16">
+        	                                            <i class="ico fa fa-clock-o mr-10"></i>
+        	                                            <span data-countdown="2020/10/10 12:25:10"></span>
+	                                                </div>
+                                                </div>
+                                                <ul class="list-inline social-icons social-icons--colored t-center">
+                                                    <li class="social-icons__item">
+                                                        <a href="#"><i class="fa fa-facebook"></i></a>
+                                                    </li>
+                                                    <li class="social-icons__item">
+                                                        <a href="#"><i class="fa fa-twitter"></i></a>
+                                                    </li>
+                                                    <li class="social-icons__item">
+                                                        <a href="#"><i class="fa fa-pinterest"></i></a>
+                                                    </li>
+                                                    <li class="social-icons__item">
+                                                        <a href="#"><i class="fa fa-linkedin"></i></a>
+                                                    </li>
+                                                    <li class="social-icons__item">
+                                                        <a href="#"><i class="fa fa-google-plus"></i></a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12">
+                                        <!-- Recent Posts -->
+                                        <div class="widget about-seller-widget panel ptb-30 prl-20">
+                                            <h3 class="widget-title h-title">关于卖家</h3>
+                                            <div class="widget-body t-center">
+                                                <figure class="mt-20 pb-10">
+                                                    <img src="assets/images/brands/store_logo.jpg" alt="">
+                                                </figure>
+                                                <div class="store-about mb-20">
+                                                    <h3 class="mb-10">Amazon Store</h3>
+                                                    <div class="rating mb-10">
+                                                        <span class="rating-stars rate-allow" data-rating="3">
+                                                    		<i class="fa fa-star-o"></i>
+                                                    		<i class="fa fa-star-o"></i>
+                                                    		<i class="fa fa-star-o star-active"></i>
+                                                    		<i class="fa fa-star-o"></i>
+                                                    		<i class="fa fa-star-o"></i>
+                                                    	</span>
+                                                        <span class="rating-reviews">
+            		                                      ( <span class="rating-count">205</span> rates )
+                                                        </span>
+                                                    </div>
+                                                    <p class="mb-15">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio officiis at accusantium ducimus excepturi cumque ad commodi libero nihil rem voluptatibus veniam ipsa ullam esse quia quae fuga, quidem iusto.</p>
+                                                    <button class="btn btn-info">关注</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- End Recent Posts -->
+                                    </div>
+                                    
+                                    <div class="col-xs-12">
+                                        <!-- Latest Deals Widegt -->
+                                        <div class="widget latest-deals-widget panel prl-20">
+                                            <div class="widget-body ptb-20">
+                                                <div class="owl-slider" data-loop="true" data-autoplay="true" data-autoplay-timeout="10000" data-smart-speed="1000" data-nav-speed="false" data-nav="true" data-xxs-items="1" data-xxs-nav="true" data-xs-items="1" data-xs-nav="true" data-sm-items="1" data-sm-nav="true" data-md-items="1" data-md-nav="true" data-lg-items="1" data-lg-nav="true">
+                                                    <div class="latest-deals__item item">
+                                                        <figure class="deal-thumbnail embed-responsive embed-responsive-4by3" data-bg-img="assets/images/deals/deal_02.jpg">
+                                                            <div class="label-discount top-10 right-10">-30%</div>
+                                                            <ul class="deal-actions top-10 left-10">
+                                                                <li class="like-deal">
+                                                                    <span>
+		                        <i class="fa fa-heart"></i>
+		                    </span>
+                                                                </li>
+                                                                <li class="share-btn">
+                                                                    <div class="share-tooltip fade">
+                                                                        <a target="_blank" href="#"><i class="fa fa-facebook"></i></a>
+                                                                        <a target="_blank" href="#"><i class="fa fa-twitter"></i></a>
+                                                                        <a target="_blank" href="#"><i class="fa fa-google-plus"></i></a>
+                                                                        <a target="_blank" href="#"><i class="fa fa-pinterest"></i></a>
+                                                                    </div>
+                                                                    <span><i class="fa fa-share-alt"></i></span>
+                                                                </li>
+                                                                <li>
+                                                                    <span>
+                                                                    <i class="fa fa-camera"></i>
+                                                                    </span>
+                                                                </li>
+                                                            </ul>
+                                                            <div class="deal-about p-10 pos-a bottom-0 left-0">
+                                                                <div class="rating mb-10">
+                                                                    <span class="rating-stars rate-allow" data-rating="4">
+                                                                        <i class="fa fa-star-o"></i>
+                                                                        <i class="fa fa-star-o"></i>
+                                                                        <i class="fa fa-star-o"></i>
+                                                                        <i class="fa fa-star-o"></i>
+                                                                        <i class="fa fa-star-o"></i>
+                                                                    </span>
+                                                                    <span class="rating-reviews color-lighter">
+		                    	                                    (<span class="rating-count">160</span> Reviews)
+                                                                    </span>
+                                                                </div>
+                                                                <h5 class="deal-title mb-10">
+		                                                             <a href="deal_single.html" class="color-lighter">Hampton Bay LED Light Ceiling Exhaust Fan</a>
+		                                                        </h5>
+                                                            </div>
+                                                        </figure>
+                                                    </div>
+                                                    <div class="latest-deals__item item">
+                                                        <figure class="deal-thumbnail embed-responsive embed-responsive-4by3" data-bg-img="assets/images/deals/deal_03.jpg">
+                                                            <div class="label-discount top-10 right-10">-15%</div>
+                                                            <ul class="deal-actions top-10 left-10">
+                                                                <li class="like-deal">
+                                                                    <span>
+		                                                            <i class="fa fa-heart"></i>
+		                                                            </span>
+                                                                </li>
+                                                                <li class="share-btn">
+                                                                    <div class="share-tooltip fade">
+                                                                        <a target="_blank" href="#"><i class="fa fa-facebook"></i></a>
+                                                                        <a target="_blank" href="#"><i class="fa fa-twitter"></i></a>
+                                                                        <a target="_blank" href="#"><i class="fa fa-google-plus"></i></a>
+                                                                        <a target="_blank" href="#"><i class="fa fa-pinterest"></i></a>
+                                                                    </div>
+                                                                    <span><i class="fa fa-share-alt"></i></span>
+                                                                </li>
+                                                                <li>
+                                                                    <span>
+                                                                    <i class="fa fa-camera"></i>
+                                                                    </span>
+                                                                </li>
+                                                            </ul>
+                                                            <div class="deal-about p-10 pos-a bottom-0 left-0">
+                                                                <div class="rating mb-10">
+                                                                    <span class="rating-stars rate-allow" data-rating="2">
+		                        <i class="fa fa-star-o"></i>
+		                        <i class="fa fa-star-o"></i>
+		                        <i class="fa fa-star-o"></i>
+		                        <i class="fa fa-star-o"></i>
+		                        <i class="fa fa-star-o"></i>
+		                    </span>
+                                                                    <span class="rating-reviews color-lighter">
+		                    	(<span class="rating-count">100</span> Reviews)
+                                                                    </span>
+                                                                </div>
+                                                                <h5 class="deal-title mb-10">
+		                    <a href="deal_single.html" class="color-lighter">Timberland Men's Thorton Waterproof Boots</a>
+		                </h5>
+                                                            </div>
+                                                        </figure>
+                                                    </div>
+                                                    <div class="latest-deals__item item">
+                                                        <figure class="deal-thumbnail embed-responsive embed-responsive-4by3" data-bg-img="assets/images/deals/deal_04.jpg">
+                                                            <div class="label-discount top-10 right-10">-60%</div>
+                                                            <ul class="deal-actions top-10 left-10">
+                                                                <li class="like-deal">
+                                                                    <span>
+		                        <i class="fa fa-heart"></i>
+		                    </span>
+                                                                </li>
+                                                                <li class="share-btn">
+                                                                    <div class="share-tooltip fade">
+                                                                        <a target="_blank" href="#"><i class="fa fa-facebook"></i></a>
+                                                                        <a target="_blank" href="#"><i class="fa fa-twitter"></i></a>
+                                                                        <a target="_blank" href="#"><i class="fa fa-google-plus"></i></a>
+                                                                        <a target="_blank" href="#"><i class="fa fa-pinterest"></i></a>
+                                                                    </div>
+                                                                    <span><i class="fa fa-share-alt"></i></span>
+                                                                </li>
+                                                                <li>
+                                                                    <span>
+		                        <i class="fa fa-camera"></i>
+		                    </span>
+                                                                </li>
+                                                            </ul>
+                                                            <div class="deal-about p-10 pos-a bottom-0 left-0">
+                                                                <div class="rating mb-10">
+                                                                    <span class="rating-stars rate-allow" data-rating="3">
+		                        <i class="fa fa-star-o"></i>
+		                        <i class="fa fa-star-o"></i>
+		                        <i class="fa fa-star-o"></i>
+		                        <i class="fa fa-star-o"></i>
+		                        <i class="fa fa-star-o"></i>
+		                    </span>
+                                                                    <span class="rating-reviews color-lighter">
+		                    	(<span class="rating-count">32</span> Reviews)
+                                                                    </span>
+                                                                </div>
+                                                                <h5 class="deal-title mb-10">
+		                    <a href="deal_single.html" class="color-lighter">New and Refurbished Lenovo Laptops</a>
+		                </h5>
+                                                            </div>
+                                                        </figure>
+                                                    </div>
+                                                    <div class="latest-deals__item item">
+                                                        <figure class="deal-thumbnail embed-responsive embed-responsive-4by3" data-bg-img="assets/images/deals/deal_05.jpg">
+                                                            <div class="label-discount top-10 right-10">-60%</div>
+                                                            <ul class="deal-actions top-10 left-10">
+                                                                <li class="like-deal">
+                                                                    <span>
+		                        <i class="fa fa-heart"></i>
+		                    </span>
+                                                                </li>
+                                                                <li class="share-btn">
+                                                                    <div class="share-tooltip fade">
+                                                                        <a target="_blank" href="#"><i class="fa fa-facebook"></i></a>
+                                                                        <a target="_blank" href="#"><i class="fa fa-twitter"></i></a>
+                                                                        <a target="_blank" href="#"><i class="fa fa-google-plus"></i></a>
+                                                                        <a target="_blank" href="#"><i class="fa fa-pinterest"></i></a>
+                                                                    </div>
+                                                                    <span><i class="fa fa-share-alt"></i></span>
+                                                                </li>
+                                                                <li>
+                                                                    <span>
+		                        <i class="fa fa-camera"></i>
+		                    </span>
+                                                                </li>
+                                                            </ul>
+                                                            <div class="deal-about p-10 pos-a bottom-0 left-0">
+                                                                <div class="rating mb-10">
+                                                                    <span class="rating-stars rate-allow" data-rating="5">
+		                        <i class="fa fa-star-o"></i>
+		                        <i class="fa fa-star-o"></i>
+		                        <i class="fa fa-star-o"></i>
+		                        <i class="fa fa-star-o"></i>
+		                        <i class="fa fa-star-o"></i>
+		                    </span>
+                                                                    <span class="rating-reviews color-lighter">
+		                    	(<span class="rating-count">29</span> Reviews)
+                                                                    </span>
+                                                                </div>
+                                                                <h5 class="deal-title mb-10">
+		                    <a href="deal_single.html" class="color-lighter">Buying a TV Is Easy When You Know These Terms</a>
+		                </h5>
+                                                            </div>
+                                                        </figure>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- End Latest Deals Widegt -->
+                                    </div>
+                                    <div class="col-xs-12">
+                                        <!-- Best Rated Deals -->
+                                        <div class="widget best-rated-deals panel pt-20 prl-20">
+                                            <h3 class="widget-title h-title">热销商品</h3>
+                                            <div class="widget-body ptb-30">
+
+
+                                                <div class="media">
+                                                    <div class="media-left">
+                                                        <a href="#">
+                                                            <img class="media-object" src="assets/images/deals/thumb_01.jpg" alt="Thumb" width="80">
+                                                        </a>
+                                                    </div>
+                                                    <div class="media-body">
+                                                        <h6 class="mb-5">
+                    <a href="#">Aenean ut orci vel massa</a>
+                </h6>
+                                                        <div class="mb-5">
+                                                            <span class="rating">
+                        <span class="rating-stars" data-rating="4">
+                            <i class="fa fa-star-o"></i>
+                            <i class="fa fa-star-o"></i>
+                            <i class="fa fa-star-o"></i>
+                            <i class="fa fa-star-o"></i>
+                            <i class="fa fa-star-o"></i>
+                        </span>
+                                                            </span>
+                                                        </div>
+                                                        <h4 class="price font-16">$60.00 <span class="price-sale color-muted">$200.00</span></h4>
+                                                    </div>
+                                                </div>
+
+
+                                                <div class="media">
+                                                    <div class="media-left">
+                                                        <a href="#">
+                                                            <img class="media-object" src="assets/images/deals/thumb_02.jpg" alt="Thumb" width="80">
+                                                        </a>
+                                                    </div>
+                                                    <div class="media-body">
+                                                        <h6 class="mb-5">
+                    <a href="#">Aenean ut orci vel massa</a>
+                </h6>
+                                                        <div class="mb-5">
+                                                            <span class="rating">
+                        <span class="rating-stars" data-rating="4">
+                            <i class="fa fa-star-o"></i>
+                            <i class="fa fa-star-o"></i>
+                            <i class="fa fa-star-o"></i>
+                            <i class="fa fa-star-o"></i>
+                            <i class="fa fa-star-o"></i>
+                        </span>
+                                                            </span>
+                                                        </div>
+                                                        <h4 class="price font-16">$60.00 <span class="price-sale color-muted">$200.00</span></h4>
+                                                    </div>
+                                                </div>
+
+
+                                                <div class="media">
+                                                    <div class="media-left">
+                                                        <a href="#">
+                                                            <img class="media-object" src="assets/images/deals/thumb_03.jpg" alt="Thumb" width="80">
+                                                        </a>
+                                                    </div>
+                                                    <div class="media-body">
+                                                        <h6 class="mb-5">
+                    <a href="#">Aenean ut orci vel massa</a>
+                </h6>
+                                                        <div class="mb-5">
+                                                            <span class="rating">
+                        <span class="rating-stars" data-rating="4">
+                            <i class="fa fa-star-o"></i>
+                            <i class="fa fa-star-o"></i>
+                            <i class="fa fa-star-o"></i>
+                            <i class="fa fa-star-o"></i>
+                            <i class="fa fa-star-o"></i>
+                        </span>
+                                                            </span>
+                                                        </div>
+                                                        <h4 class="price font-16">$60.00 <span class="price-sale color-muted">$200.00</span></h4>
+                                                    </div>
+                                                </div>
+
+
+                                                <div class="media">
+                                                    <div class="media-left">
+                                                        <a href="#">
+                                                            <img class="media-object" src="assets/images/deals/thumb_04.jpg" alt="Thumb" width="80">
+                                                        </a>
+                                                    </div>
+                                                    <div class="media-body">
+                                                        <h6 class="mb-5">
+                    <a href="#">Aenean ut orci vel massa</a>
+                </h6>
+                                                        <div class="mb-5">
+                                                            <span class="rating">
+                        <span class="rating-stars" data-rating="4">
+                            <i class="fa fa-star-o"></i>
+                            <i class="fa fa-star-o"></i>
+                            <i class="fa fa-star-o"></i>
+                            <i class="fa fa-star-o"></i>
+                            <i class="fa fa-star-o"></i>
+                        </span>
+                                                            </span>
+                                                        </div>
+                                                        <h4 class="price font-16">$60.00 <span class="price-sale color-muted">$200.00</span></h4>
+                                                    </div>
+                                                </div>
+
+
+                                            </div>
+                                        </div>
+                                        <!-- Best Rated Deals -->
+                                    </div>
+                                    <div class="col-xs-12">
+                                        <!-- Contact Us Widget -->
+                                        <div class="widget contact-us-widget panel pt-20 prl-20">
+                                            <h3 class="widget-title h-title">有什么问题吗?</h3>
+                                            <div class="widget-body ptb-30">
+                                                <p class="mb-20 color-mid">如果您有任何疑问，请随时提出。</p>
+                                                <a href="#" class="btn btn-block"><i class="mr-10 font-15 fa fa-envelope-o"></i>发表留言</a>
+                                            </div>
+                                        </div>
+                                        <!-- End Contact Us Widget -->
+                                    </div>
+                                </div>
+                            </aside>
+                            <!-- End Blog Sidebar -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Page Container -->
+        </main>
+        <!-- –––––––––––––––[ END PAGE CONTENT ]––––––––––––––– -->
+        <section class="footer-top-area pt-70 pb-30 pos-r bg-blue">
+            <div class="container">
+                <div class="row row-tb-20">
+                    <div class="col-sm-12 col-md-7">
+                        <div class="row row-tb-20">
+                            <div class="footer-col col-sm-6">
+                                <div class="footer-about">
+                                    <img class="mb-40" src="assets/images/logo_light.png" width="250" alt="">
+                                    <p class="color-light">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laboriosam dolores quidem mollitia id ipsa nisi necessitatibus iure repudiandae aperiam, odit ipsam dolor fugiat corporis nesciunt illo nemo minus.</p>
+                                </div>
+                            </div>
+                            <div class="footer-col col-sm-6">
+                                <div class="footer-top-twitter">
+                                    <h2 class="color-lighter">Twitter Feed</h2>
+                                    <ul class="twitter-list">
+                                        <li class="single-twitter">
+                                            <p class="color-light"><i class="ico fa fa-twitter"></i><a href="#">@masum_rana :</a> Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore in reprehenderit.</p>
+                                        </li>
+                                        <li class="single-twitter">
+                                            <p class="color-light"><i class="ico fa fa-twitter"></i><a href="#">@masum_rana :</a> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ratione id corrupti iusto cupiditate omnis.</p>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-5">
+                        <div class="row row-tb-20">
+                            <div class="footer-col col-sm-6">
+                                <div class="footer-links">
+                                    <h2 class="color-lighter">Quick Links</h2>
+                                    <ul>
+                                        <li><a href="deals_grid.html">Latest Deals</a>
+                                        </li>
+                                        <li><a href="coupons_grid.html">Newest Coupons</a>
+                                        </li>
+                                        <li><a href="contact_us_02.html">Contact Us</a>
+                                        </li>
+                                        <li><a href="404.html">Error 404</a>
+                                        </li>
+                                        <li><a href="terms_conditions.html">Terms of Use</a>
+                                        </li>
+                                        <li><a href="faq.html">FAQs</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="footer-col col-sm-6">
+                                <div class="footer-top-instagram instagram-widget">
+                                    <h2>Instagram Widget</h2>
+                                    <div class="row row-tb-5 row-rl-5">
+
+
+                                        <div class="instagram-widget__item col-xs-4">
+                                            <img src="assets/images/instagram/instagram_01.jpg" alt="">
+                                        </div>
+
+
+                                        <div class="instagram-widget__item col-xs-4">
+                                            <img src="assets/images/instagram/instagram_02.jpg" alt="">
+                                        </div>
+
+
+                                        <div class="instagram-widget__item col-xs-4">
+                                            <img src="assets/images/instagram/instagram_03.jpg" alt="">
+                                        </div>
+
+
+                                        <div class="instagram-widget__item col-xs-4">
+                                            <img src="assets/images/instagram/instagram_04.jpg" alt="">
+                                        </div>
+
+
+                                        <div class="instagram-widget__item col-xs-4">
+                                            <img src="assets/images/instagram/instagram_05.jpg" alt="">
+                                        </div>
+
+
+                                        <div class="instagram-widget__item col-xs-4">
+                                            <img src="assets/images/instagram/instagram_06.jpg" alt="">
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12">
+                        <div class="payment-methods t-center">
+                            <span><img src="assets/images/icons/payment/paypal.jpg" alt=""></span>
+                            <span><img src="assets/images/icons/payment/visa.jpg" alt=""></span>
+                            <span><img src="assets/images/icons/payment/mastercard.jpg" alt=""></span>
+                            <span><img src="assets/images/icons/payment/discover.jpg" alt=""></span>
+                            <span><img src="assets/images/icons/payment/american.jpg" alt=""></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- –––––––––––––––[ FOOTER ]––––––––––––––– -->
+        <div th:replace="commons/footer::public_footer"></div>
+        <!-- –––––––––––––––[ END FOOTER ]––––––––––––––– -->
+
+    </div>
+    <!-- ––––––––––––––––––––––––––––––––––––––––– -->
+    <!-- END WRAPPER                               -->
+    <!-- ––––––––––––––––––––––––––––––––––––––––– -->
+
+
+    <!-- ––––––––––––––––––––––––––––––––––––––––– -->
+    <!-- BACK TO TOP                               -->
+    <!-- ––––––––––––––––––––––––––––––––––––––––– -->
+    <div id="backTop" class="back-top is-hidden-sm-down">
+        <i class="fa fa-angle-up" aria-hidden="true"></i>
+    </div>
+
+    <!-- ––––––––––––––––––––––––––––––––––––––––– -->
+    <!-- SCRIPTS                                   -->
+    <!-- ––––––––––––––––––––––––––––––––––––––––– -->
+
+    <div th:replace="commons/js/js_header_footer :: public_js1"></div>
+
+</body>
+<script>
+    $(document).ready(function () {
+        addToCart();
+    })
+
+    function addToCart() {
+        $("#addtocar").click(function () {
+            $.ajax({
+                url: "/addCart",
+                contentType: "application/json",
+                dataType: "json",
+                data: {"goodsId": $("#goodsId").val()},
+                success: function (result) {
+                    layer.msg('添加成功');
+                },
+                error: function (result) {
+                    layer.msg('添加失败');
+                }
+            })
+        })
+    }
+
+</script>
+</html>
