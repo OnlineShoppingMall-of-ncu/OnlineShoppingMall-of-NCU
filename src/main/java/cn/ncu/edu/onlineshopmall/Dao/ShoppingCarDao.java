@@ -30,7 +30,7 @@ public interface ShoppingCarDao {
      * @return
      */
     @Select("select *from shoppingcar where shopid=#{shopid}")
-    ShoppingCar findShopcarByShopid(@Param("shopid")Integer shopid);
+    ShoppingCar findShopcarByShopid(@Param("shopid") String shopid);
 
     /*
      **插入购物车信息

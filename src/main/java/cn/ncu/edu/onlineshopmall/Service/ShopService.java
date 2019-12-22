@@ -24,7 +24,7 @@ public class ShopService {
      *通过店铺唯一编号shopid来查询店铺信息
      * @return Shop
      */
-    public Shop findShopByShopid(int shopid){
+    public Shop findShopByShopid(String shopid){
         return shopDao.findShopByShopid(shopid);
     }
 
@@ -41,7 +41,7 @@ public class ShopService {
      * @param shopid
      * @param username
      */
-    public void InsertShop(int shopid, String username){
+    public void InsertShop(String shopid, String username){
         shopDao.InsertShop(shopid,username);
     }
 
@@ -49,7 +49,7 @@ public class ShopService {
      * 通过评价唯一编号shopid在表中删除一条店铺信息
      * @param shopid
      */
-    public void deleteShopByShopid(int shopid){
+    public void deleteShopByShopid(String shopid){
         shopDao.deleteShopByShopid(shopid);
     }
 

@@ -22,7 +22,7 @@ public class Commodity {
         this.commodityid = commodityid;
     }
 
-    private int shopid;
+    private String shopid;
 
     public String getCommodityid() {
         return commodityid;
@@ -31,6 +31,14 @@ public class Commodity {
 
     public String getDecription() {
         return decription;
+    }
+
+    public String getShopid() {
+        return shopid;
+    }
+
+    public void setShopid(String shopid) {
+        this.shopid = shopid;
     }
 
     public void setDecription(String decription) {
@@ -53,11 +61,4 @@ public class Commodity {
         this.price = price;
     }
 
-    public int getShopid() {
-        return shopid;
-    }
-
-    public void setShopid(int shopid) {
-        this.shopid = shopid;
-    }
 }

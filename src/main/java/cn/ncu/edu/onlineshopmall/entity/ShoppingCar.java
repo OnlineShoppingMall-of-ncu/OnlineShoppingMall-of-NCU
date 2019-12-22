@@ -2,7 +2,7 @@ package cn.ncu.edu.onlineshopmall.entity;
 
 public class ShoppingCar {
     private String username;
-    private int commodityid;
+    private String commodityid;
 
     public String getUsername() {
         return username;
@@ -12,11 +12,11 @@ public class ShoppingCar {
         this.username = username;
     }
 
-    public int getCommodityid() {
+    public String getCommodityid() {
         return commodityid;
     }
 
-    public void setCommodityid(int commodityid) {
+    public void setCommodityid(String commodityid) {
         this.commodityid = commodityid;
     }
 }

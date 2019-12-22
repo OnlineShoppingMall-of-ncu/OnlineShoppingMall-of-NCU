@@ -50,7 +50,7 @@ public class ShoppingCarService {
      * by shopid find
      * @param shopid
      */
-    public ShoppingCar findShopCarbyShopid(Integer shopid){
+    public ShoppingCar findShopCarbyShopid(String shopid){
         return ShoppingCarDao.findShopcarByShopid(shopid);
     }
 
