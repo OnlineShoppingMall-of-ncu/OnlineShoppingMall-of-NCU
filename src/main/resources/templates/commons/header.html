@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+<!-- –––––––––––––––[ HEADER ]––––––––––––––– -->
+<header id="mainHeader" class="main-header" th:fragment="public_header">
+
+    <!-- Top Bar -->
+    <div class="top-bar bg-gray">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 col-md-4 is-hidden-sm-down">
+                    <ul class="nav-top nav-top-left list-inline t-left">
+                        <li><a href="#"><i class="fa fa-question-circle"></i>折扣指南</a>
+                        </li>
+                        <li><a href="#"><i class="fa fa-support"></i>客户协助</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-sm-12 col-md-8">
+                    <ul class="nav-top nav-top-right list-inline t-xs-center t-md-right">
+                        <li>
+                            <a href="#"><i class="fa fa-home"></i><span th:if="${session.Users} !=null" th:text="${session.Users.username}"></span><i class="fa fa-caret-down"></i></a>
+                            <ul>
+                                <li><a th:href="@{/users/index}">用户中心</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li><a href="/users/login"><i class="fa fa-lock"></i>登录</a>
+                        </li>
+                        <li><a href="/users/register"><i class="fa fa-user"></i>注册</a>
+                        </li>
+                        <li><a href="/users/logout"><i class="fa fa-power-off" aria-hidden="true"></i>退出</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Top Bar -->
+    <!-- Header Header -->
+    <div class="header-header bg-white">
+        <div class="container">
+            <div class="row row-rl-0 row-tb-20 row-md-cell">
+                <div class="brand col-md-3 t-xs-center t-md-left valign-middle">
+                    <a href="#" class="logo">
+                        <img th:src="@{/assets/images/logo.png}" alt="" width="250">
+                    </a>
+                </div>
+                <div class="header-search col-md-9">
+                    <div class="row row-tb-10 ">
+                        <div class="col-sm-8">
+                            <form class="search-form" action="/search">
+                                <div class="input-group">
+                                    <input id="product_search" type="text" name="goodsName" class="form-control input-lg search-input"
+                                           placeholder="在这里输入关键字 ..." required="required" data-provide="typeahead" autocomplete="off">
+
+
+                                    <div class="input-group-btn">
+                                        <div class="input-group">
+                                            <select class="form-control input-lg search-select" onchange="window.location=this.value">
+                                                <option class="-audio-description"><span th:text="请选择分类"></span></option>
+                                                <option class="select2-results__option" th:each="category:${categoryList}" th:value="@{/getByCateId?categoryId=}+${category.cateid}" ><span th:text="${category.catename}"></span></option>
+                                            </select>
+                                            <div class="input-group-btn">
+                                                <button type="submit" class="btn btn-lg btn-search btn-block" id="btn1">
+                                                    <i class="fa fa-search font-16"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="col-sm-4 t-xs-center t-md-right">
+                            <div class="header-cart">
+                                <a href="/showcart">
+                                    <span class="icon lnr lnr-cart"></span>
+                                    <div><span class="cart-number" id="cart_num" th:text="${session.goodsSum}"></span>
+                                    </div>
+                                    <span>购物车</span>
+                                </a>
+                            </div>
+                            <div class="header-wishlist ml-20">
+                                <a href="#">
+                                    <span class="icon lnr lnr-heart font-30"></span>
+                                    <span class="title">心愿单</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Header Header -->
+
+    <!-- Header Menu -->
+    <div class="header-menu bg-blue">
+        <div class="container">
+            <nav class="nav-bar">
+                <div class="nav-header">
+                            <span class="nav-toggle" data-toggle="#header-navbar">
+		                        <i></i>
+		                        <i></i>
+		                        <i></i>
+		                    </span>
+                </div>
+                <div id="header-navbar" class="nav-collapse">
+                    <ul class="nav-menu">
+                        <li class="active">
+                            <a href="/main">主页</a>
+                        </li>
+                        <li class="dropdown-mega-menu">
+                            <a href="../deals_grid.html">所有频道</a>
+                            <div class="mega-menu">
+                                <div class="row row-v-10">
+                                    <div class="col-md-3">
+                                        <ul>
+                                            <li><a href="/jump">所有商品</a>
+                                            </li>
+                                            <li><a href="#">促销商品</a>
+                                            </li>
+                                            <li><a href="#">热门商品</a>
+                                            </li>
+                                            <li><a href="#">最新商品</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <figure class="deal-thumbnail embed-responsive embed-responsive-4by3"
+                                                data-bg-img="/assets/images/deals/deal_03.jpg}">
+                                            <div class="label-discount top-10 right-10">-15%</div>
+                                            <div class="deal-about p-10 pos-a bottom-0 left-0">
+                                                <div class="rating mb-10">
+                                                            <span class="rating-stars rate-allow" data-rating="2">
+										                        <i class="fa fa-star-o"></i>
+										                        <i class="fa fa-star-o"></i>
+										                        <i class="fa fa-star-o"></i>
+										                        <i class="fa fa-star-o"></i>
+										                        <i class="fa fa-star-o"></i>
+										                    </span>
+                                                </div>
+                                                <h6 class="deal-title mb-10">
+                                                    <a href="deal_single.html" class="color-lighter">Aenean ut orci vel
+                                                        massa</a>
+                                                </h6>
+                                            </div>
+                                        </figure>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <figure class="deal-thumbnail embed-responsive embed-responsive-4by3"
+                                                data-bg-img="/assets/images/deals/deal_04.jpg}">
+                                            <div class="label-discount top-10 right-10">-60%</div>
+                                            <div class="deal-about p-10 pos-a bottom-0 left-0">
+                                                <div class="rating mb-10">
+                                                            <span class="rating-stars rate-allow" data-rating="3">
+										                        <i class="fa fa-star-o"></i>
+										                        <i class="fa fa-star-o"></i>
+										                        <i class="fa fa-star-o"></i>
+										                        <i class="fa fa-star-o"></i>
+										                        <i class="fa fa-star-o"></i>
+										                    </span>
+                                                </div>
+                                                <h6 class="deal-title mb-10">
+                                                    <a href="deal_single.html" class="color-lighter">Aenean ut orci vel
+                                                        massa</a>
+                                                </h6>
+                                            </div>
+                                        </figure>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <figure class="deal-thumbnail embed-responsive embed-responsive-4by3"
+                                                data-bg-img="/assets/images/deals/deal_05.jpg}">
+                                            <div class="label-discount top-10 right-10">-60%</div>
+                                            <div class="deal-about p-10 pos-a bottom-0 left-0">
+                                                <div class="rating mb-10">
+                                                            <span class="rating-stars rate-allow" data-rating="5">
+										                        <i class="fa fa-star-o"></i>
+										                        <i class="fa fa-star-o"></i>
+										                        <i class="fa fa-star-o"></i>
+										                        <i class="fa fa-star-o"></i>
+										                        <i class="fa fa-star-o"></i>
+										                    </span>
+                                                </div>
+                                                <h6 class="deal-title mb-10">
+                                                    <a href="deal_single.html" class="color-lighter">Aenean ut orci vel
+                                                        massa</a>
+                                                </h6>
+                                            </div>
+                                        </figure>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <a href="#">优惠券</a>
+
+                        </li>
+                        <li>
+                            <a href="/admin/login">商家登录</a>
+
+                        </li>
+                        <li>
+                            <a href="#">联系我们</a>
+                        </li>
+                        <li>
+                            <a href="#">博客</a>
+                        </li>
+                        <li>
+                            <a href="#">快捷方式</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="nav-menu nav-menu-fixed">
+                    <a href="#">更多</a>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <!-- End Header Menu -->
+</header>
+<!-- –––––––––––––––[ HEADER ]––––––––––––––– -->
+</body>
+
+
+</html>

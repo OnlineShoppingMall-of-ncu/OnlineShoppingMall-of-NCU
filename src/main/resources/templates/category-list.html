@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:float="http://www.w3.org/1999/xhtml"
+      layout:decorate="~{/layout}">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Title</title>
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <!-- Bootstrap 3.3.7 -->
+    <link rel="stylesheet" th:href="@{/adminlte/bower_components/bootstrap/dist/css/bootstrap.min.css}">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" th:href="@{/adminlte/bower_components/font-awesome/css/font-awesome.min.css}">
+    <!-- Ionicons -->
+    <link rel="stylesheet" th:href="@{/adminlte/bower_components/Ionicons/css/ionicons.min.css}">
+    <!-- Theme style -->
+    <link rel="stylesheet" th:href="@{/adminlte/css/AdminLTE.min.css}">
+    <!-- AdminLTE Skins. Choose a skin from the css/skins
+         folder instead of downloading all of them to reduce the load. -->
+    <link rel="stylesheet" th:href="@{/adminlte/css/skins/_all-skins.min.css}">
+    <link rel="stylesheet" th:href="@{/bootstrap-table/bootstrap-table.css}">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- jQuery 3 -->
+    <script th:src="@{/adminlte/bower_components/jquery/dist/jquery.min.js}"></script>
+    <!-- Bootstrap 3.3.7 -->
+    <script th:src="@{/adminlte/bower_components/bootstrap/dist/js/bootstrap.min.js}"></script>
+    <!-- FastClick -->
+    <script th:src="@{/adminlte/bower_components/fastclick/lib/fastclick.js}"></script>
+    <!-- AdminLTE App -->
+    <script th:src="@{/adminlte/js/adminlte.min.js}"></script>
+    <!-- AdminLTE for demo purposes -->
+    <script th:src="@{/adminlte/js/demo.js}"></script>
+    <script th:src="@{/bootstrap-table/bootstrap-table.min.js}"></script>
+    <script th:src="@{/bootstrap-table/locale/bootstrap-table-zh-CN.js}"></script>
+    <!--模态消息对话框插件-->
+    <script th:src="@{/js/sweetalert.min.js}"></script>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/sweetalert.css}">
+    <!--引入BootstrapValidator插件添加验证规则-->
+    <script src="https://cdn.bootcss.com/jquery.bootstrapvalidator/0.5.3/js/bootstrapValidator.min.js"></script>
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+<div class="wrapper">
+
+    <div th:replace="commons/public::toppublic"></div>
+    <!-- Left side column. contains the logo and sidebar -->
+    <div th:replace="commons/public::leftpublic"></div>
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1>
+                商品分类
+            </h1>
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="box box-info">
+                        <div class="box-body">
+                            <div id="toolbar">
+                                <div class="form-inline" role="form">
+                                     <div class="col-xs-6">
+                                        <div class="form-group" >
+                                            <label for="keyword">查询商品分类: </label>
+                                            <input name="keyword" class="form-control" type="text" id="keyword">
+                                        </div>
+                                        <button id="searchBtn" type="submit" class="btn btn-primary"
+                                                style="margin-left: 5px">
+                                            查询
+                                        </button>
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <form id="addCategoryForm" th:action="@{/category/addCategory}">
+                                            <div class="form-group">
+                                                <label for="catename">添加商品分类: </label>
+                                                <input name="catename" class="form-control" type="text" id="catename" >
+                                            </div>
+                                            <button id="createBtn" type="submit" class="btn btn-info"
+                                                    style="margin-left: 5px">
+                                                添加
+                                            </button>
+
+                                        </form>
+                                    </div>
+                                    <button id="deleteBtn" type="submit" class="btn btn-danger" style="margin-left: 10px">批量删除</button>
+                                </div>
+                            </div>
+                            <table id="dataTable" class="table table-hover table-responsive"
+                                   style="table-layout: fixed"></table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /.row -->
+        </section>
+        <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+
+    <div th:replace="commons/public::footpublic"></div>
+    <div th:replace="commons/public::controlpublic"></div>
+    <!-- Control Sidebar -->
+
+    <!-- /.control-sidebar -->
+    <!-- Add the sidebar's background. This div must be placed
+         immediately after the control sidebar -->
+    <div class="control-sidebar-bg"></div>
+</div>
+
+<script>
+    $('#dataTable').bootstrapTable({
+        method: 'get',  //Ajax请求
+        url: "/category/api/searchCategory", //Ajax请求的地址
+        dataField: "categories",       //Ajax请求返回的数据是哪个字段
+        pageNumber: 1,                //分页初始在第几页
+        pagination: true,             //是否分页
+        queryParams: queryParams,     //查询参数
+        sidePagination: 'server',     //后台分页
+        pageSize: 5,                 //每页默认显示条数
+        pageList: [5, 10, 20, 50],
+        showRefresh: true,            //刷新按钮
+        clickToSelect: true,          //点击选中当前行
+        buttonsAlign: 'right',
+        toolbar: '#toolbar',
+        showColumns: true,
+        columns: [
+            {
+                title: '全选',
+                field: 'select',
+                checkbox: true,
+                width: 25,
+                align: 'center',
+            },
+            {
+                title: '分类ID',
+                field: 'cateid',
+                width: 80,
+                align: 'center'
+            },
+            {
+                title: '分类名',
+                field: 'catename',
+                width: 160,
+                align: 'center'
+            },
+            {
+                title: '修改',
+                width: 50,
+                formatter: function (value, row, index, field) {
+                    return [
+                        '<a class="edit ml10" href="javascript:void(0)" title="Edit">',
+                        '<i class="glyphicon glyphicon-edit"></i>',
+                        '</a>',
+                    ].join('');
+                },
+                events: {
+                    'click .edit': function (e, value, row, index) {
+                        edit(row.cateid);
+                    }
+                },
+                align: 'center'
+            },
+            {
+                title: '删除',
+                width: 50,
+                formatter: function (value, row, index, field) {
+                    return [
+                        '<a class="remove ml10" href="javascript:void(0)" title="Delete">',
+                        '<i class="glyphicon glyphicon-trash"></i>',
+                        '</a>',
+                    ].join('');
+                },
+                events: {
+                    'click .remove': function (e, value, row, index) {
+                        swal({
+                                title: '您是否要删除?',
+                                text: '你将无法恢复所删除的分类信息!',
+                                type: 'warning',
+                                showCancelButton: true,
+                                confirmButtonText: '删除',
+                                cancelButtonText: '返回',
+                                closeOnConfirm: false,
+                                closeOnCancel: false
+                            },
+                            function (isConfirm) {
+                                if (isConfirm) {
+                                    $.ajax({
+                                        url: "/category/delete?id=" + row.cateid,
+                                        type: "delete",
+                                        success: function (result) {
+                                            if (result) {
+                                                swal(result.msg);
+                                                $("#dataTable").bootstrapTable('remove', {
+                                                    field: 'cateid',
+                                                    values: [parseInt(row.cateid)]
+                                                });
+                                            } else {
+                                                console.log("失败");
+                                            }
+                                        }
+                                    });
+                                } else if (isConfirm === false) {
+                                    swal(
+                                        '已取消',
+                                        '您取消了删除操作',
+                                        'error'
+                                    );
+
+                                }
+                            });
+                    }
+                },
+                align: 'center'
+            },
+        ],
+        locale: 'zh-CN',
+        responseHandler: function (data) {
+            return data;
+        }
+    });
+
+
+    function queryParams(params) {
+        var keyword = $('#keyword').val();
+        keyword = $.trim(keyword);
+        return {
+            pageSize: params.limit,
+            pageNum: params.offset / params.limit + 1,
+            keyword: keyword
+        }
+    }
+
+
+    //根据选中的cateid得到商品分类信息
+    function edit(id) {
+        $.ajax({
+            type: "GET",
+            url: "/category/get?id=" + id,
+            dataType: "json",
+            success: function (data) {
+                if (data) {
+                    var category = data;
+                    $('#editCateId').val(category.cateid);
+                    $('#editCategoryName').val(category.catename);
+                    $('#editCategoryModal').modal();
+                } else {
+                    alert("请重新勾选")
+                }
+            }
+        });
+    }
+
+    //点击保存按钮触发事件保存修改后的商品分类信息
+    function editRequest() {
+        //表单验证
+        $('#editCategoryForm').bootstrapValidator({
+            //提示消息
+            message: '表单信息有误',
+            //表单框里右侧的icon
+            feedbackIcons: {
+                valid: 'glyphicon glyphicon-ok',
+                invalid: 'glyphicon glyphicon-remove',
+                validating: 'glyphicon glyphicon-refresh'
+            },
+            fields: {
+                cateId: {
+                    validators: {
+                        notEmpty: {
+                            message: '非法数据，请联系管理员'
+                        }
+                    }
+                },
+                categoryName: {
+                    validators: {
+                        notEmpty: {
+                            message: '商品分类不能为空'
+                        },
+                        stringLength: {
+                            min: 1,
+                            max: 18,
+                            message: '长度必须在1到18位之间'
+                        }
+                    }
+                }
+            }
+        });
+        //校验数据
+        $('#editCategoryForm').data('bootstrapValidator').validate();
+        //判断结果，符合要求继续执行
+        if (!$('#editCategoryForm').data('bootstrapValidator').isValid()) {
+            return;
+        }
+        var cateid = $('#editCateId').val();
+        var catename = $('#editCategoryName').val();
+        $.ajax({
+            type: "Post",
+            url: "/category/edit",
+            data: {
+                cateid: cateid,
+                catename: catename,
+            },
+            success: function (result) {
+                $('#editCategoryModal').modal('hide');
+                swal(result.msg);
+                $('#dataTable').bootstrapTable("refresh", {silent: true});
+            }, error: function () {
+                alert("错误！！");
+            }
+        });
+    }
+
+
+    $("#deleteBtn").click(function () {
+        var selects = $('#dataTable').bootstrapTable('getSelections');//得到选中的数据
+        if (selects.length === 0) {
+            swal('请选择要删除的商品分类');
+            return false;
+        } else {
+            swal({
+                    title: '您是否要删除?',
+                    text: '你将无法恢复所删除的分类信息!',
+                    type: 'warning',
+                    showCancelButton: true,
+                    confirmButtonText: '删除',
+                    cancelButtonText: '返回',
+                    closeOnConfirm: false,
+                    closeOnCancel: false
+                },
+                function (isConfirm) {
+                    if (isConfirm) {
+                        var idArr = [];
+                        for (var i = 0; i < selects.length; i++) {
+                            idArr.push(selects[i].cateid);
+                        }
+                        $.ajax({
+                            url: '/category/multiDel',
+                            data: {
+                                ids: idArr.join(",")
+                            },
+                            success: function (result) {
+                                swal(result.msg);
+                                $("#dataTable").bootstrapTable('remove', {field: 'cateid', values: idArr});
+                            }
+                        });
+                    } else if (isConfirm === false) {
+                        swal(
+                            '已取消',
+                            '您取消了删除操作',
+                            'error'
+                        );
+
+                    }
+                });
+        }
+    })
+
+
+    $('#searchBtn').click(function () {
+        $('#dataTable').bootstrapTable('refresh', {url: '/category/api/searchCategory'});
+    });
+    $('#createBtn').click(function () {
+        //添加商品分类验证规则
+
+        $('#addCategoryForm').bootstrapValidator({
+            //提示消息
+            message: '表单信息有误',
+            //表单框里右侧的icon
+            feedbackIcons: {
+                valid: 'glyphicon glyphicon-ok',
+                invalid: 'glyphicon glyphicon-remove',
+                validating: 'glyphicon glyphicon-refresh'
+            },
+            fields: {
+                catename: {
+                    validators: {
+                        notEmpty: {
+                            message: '商品分类不能为空'
+                        },
+                        stringLength: {
+                            min: 1,
+                            max: 18,
+                            message: '长度必须在1到18位之间'
+                        }
+                    }
+                }
+            }
+        });
+        //校验数据
+        $('#addCategoryForm').data('bootstrapValidator').validate();
+        //判断结果，符合要求继续执行
+        if (!$('addCategoryForm').data('bootstrapValidator').isValid()) {
+            return;
+        }
+
+    })
+
+</script>
+<!--弹出层引入-->
+<div th:replace="/commons/modal::editCategoryModal"></div>
+
+<!--接收controller中receive方法传回的msg并以弹窗的方式显示msg-->
+<th:if test="${msg}">
+    <input id="message" th:value="${msg}" hidden>
+    <script type="text/javascript" th:inline="javascript">
+        $(document).ready(function () {
+            var msg = $("#message").val();
+            if (msg !== "") {
+                swal(msg);
+            }
+        });
+    </script>
+</th:if>
+</body>
+</html>

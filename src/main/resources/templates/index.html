@@ -1,0 +1,320 @@
+﻿<!DOCTYPE html>
+<!--[if lt IE 9 ]>
+<html lang="en" dir="ltr" class=" ie-old"> <![endif]-->
+<!--[if IE 9 ]>
+<html lang="en" dir="ltr" class=" ie9"> <![endif]-->
+<!--[if IE 10 ]>
+<html lang="en" dir="ltr" class=" ie10"> <![endif]-->
+<!--[if (gt IE 10)|!(IE)]><!-->
+<html lang="en" dir="ltr" class="" xmlns:th="http://www.thymeleaf.org">
+<!--<![endif]-->
+
+<head>
+
+    <!-- ––––––––––––––––––––––––––––––––––––––––– -->
+    <!-- META TAGS                                 -->
+    <!-- ––––––––––––––––––––––––––––––––––––––––– -->
+    <meta charset="utf-8">
+    <!-- Always force latest IE rendering engine -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Mobile specific meta -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+    <!-- ––––––––––––––––––––––––––––––––––––––––– -->
+    <!-- PAGE TITLE                                -->
+    <!-- ––––––––––––––––––––––––––––––––––––––––– -->
+    <title>FRIDAY | Coupons, Deals, Discounts and Promo codes Template</title>
+
+    <!-- ––––––––––––––––––––––––––––––––––––––––– -->
+    <!-- SEO METAS                                 -->
+    <!-- ––––––––––––––––––––––––––––––––––––––––– -->
+    <meta name="description"
+          content="FRIDAY is a responsive multipurpose-ecommerce site template allows you to store coupons and promo codes from different brands and create store for deals, discounts, It can be used as coupon website such as groupon.com and also as online store">
+    <meta name="	black friday, coupon, coupon codes, coupon theme, coupons, deal news, deals, discounts, ecommerce, friday deals, groupon, promo codes, responsive, shop, store coupons">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="CODASTROID">
+
+    <!-- ––––––––––––––––––––––––––––––––––––––––– -->
+    <!-- PAGE FAVICON                              -->
+    <div th:replace="commons/css/css_header_footer :: public_css1"></div>
+
+
+</head>
+
+<body id="body" class="wide-layout preloader-active">
+
+
+<!--[if lt IE 9]>
+<p class="browserupgrade alert-error">
+    You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your
+    browser</a> to improve your experience.
+</p>
+<![endif]-->
+
+<noscript>
+    <div class="noscript alert-error">
+        For full functionality of this site it is necessary to enable JavaScript. Here are the <a
+            href="http://www.enable-javascript.com/" target="_blank">
+        instructions how to enable JavaScript in your web browser</a>.
+    </div>
+</noscript>
+
+<!-- ––––––––––––––––––––––––––––––––––––––––– -->
+<!-- PRELOADER                                 -->
+<!-- ––––––––––––––––––––––––––––––––––––––––– -->
+<!-- Preloader -->
+<div id="preloader" class="preloader">
+    <div class="loader-cube">
+        <div class="loader-cube__item1 loader-cube__item"></div>
+        <div class="loader-cube__item2 loader-cube__item"></div>
+        <div class="loader-cube__item4 loader-cube__item"></div>
+        <div class="loader-cube__item3 loader-cube__item"></div>
+    </div>
+</div>
+<!-- End Preloader -->
+<!-- ––––––––––––––––––––––––––––––––––––––––– -->
+<!-- WRAPPER                                   -->
+<!-- ––––––––––––––––––––––––––––––––––––––––– -->
+<div id="pageWrapper" class="page-wrapper">
+    <!-- –––––––––––––––[ HEADER ]––––––––––––––– -->
+    <div th:replace="commons/header::public_header"></div>
+    <!-- –––––––––––––––[ HEADER ]––––––––––––––– -->
+
+    <!-- –––––––––––––––[ PAGE CONTENT ]––––––––––––––– -->
+    <main id="mainContent" class="main-content">
+        <div class="page-container ptb-10">
+            <div class="container">
+                <!--         显示轮播图       -->
+                <div class="section deals-header-area ptb-30">
+                    <div class="row row-tb-20">
+                        <div class="col-xs-12 col-md-4 col-lg-3">
+                            <aside>
+                                <ul class="nav-coupon-category panel">
+                                    <li>
+                                        <a href=" /getByCategory/?category='数码'">
+                                        <i class="fa fa-leaf"></i><span>数码</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="/getByCategory/?category='服饰'">
+                                            <i class="fa fa-leaf"></i><span>服饰</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="/getByCategory/?category='家电'">
+                                            <i class="fa fa-leaf"></i><span>家电</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="/getByCategory/?category='书籍'">
+                                            <i class="fa fa-leaf"></i><span>书籍</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="/getByCategory/?category='少儿'">
+                                            <i class="fa fa-leaf"></i><span>少儿</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                    <a href="#">
+                                        <i class="fa fa-leaf"></i><span>家用</span>
+                                    </a>
+                                    </li>
+                                    <li>
+                                    <a href="#">
+                                        <i class="fa fa-leaf"></i><span>日常生活</span>
+                                    </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <i class="fa fa-leaf"></i><span>待添加敬请期待</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <i class="fa fa-leaf"></i><span>待添加敬请期待</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <i class="fa fa-leaf"></i><span>待添加敬请期待</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </aside>
+                        </div>
+                        <div class="col-xs-12 col-md-8 col-lg-9">
+                            <div class="header-deals-slider owl-slider" data-loop="true" data-autoplay="true"
+                                 data-autoplay-timeout="10000" data-smart-speed="1000" data-nav-speed="false"
+                                 data-nav="true" data-xxs-items="1" data-xxs-nav="true" data-xs-items="1"
+                                 data-xs-nav="true" data-sm-items="1" data-sm-nav="true" data-md-items="1"
+                                 data-md-nav="true" data-lg-items="1" data-lg-nav="true">
+
+                                <div class="deal-single panel item" th:each="shuf:${shufList}">
+                                    <figure class="deal-thumbnail embed-responsive embed-responsive-16by9">
+                                        <img th:src="@{/pictures/}+${shuf.path}">
+                                        <ul class="deal-actions top-10 left-10">
+                                            <li class="like-deal" th:onclick="likeDealClick('[[${shuf.commodityid}]]',this);"></li>
+                                            <li class="share-btn">
+                                                <div class="share-tooltip fade">
+                                                    <a target="_blank" href="#"><i class="fa fa-facebook"></i></a>
+                                                    <a target="_blank" href="#"><i class="fa fa-twitter"></i></a>
+                                                    <a target="_blank" href="#"><i class="fa fa-google-plus"></i></a>
+                                                    <a target="_blank" href="#"><i class="fa fa-pinterest"></i></a>
+                                                </div>
+                                                <span><i class="fa fa-share-alt"></i></span>
+                                            </li>
+                                            <li>
+                                                <span>
+                                                    <i class="fa fa-camera"></i>
+                                                </span>
+                                            </li>
+                                        </ul>
+                                        <div class="deal-about p-20 pos-a bottom-0 left-0">
+                                            <div class="rating mb-10">
+                                                    <span class="rating-stars" data-rating="5">
+			                        <i class="fa fa-star-o star-active"></i>
+			                        <i class="fa fa-star-o"></i>
+			                        <i class="fa fa-star-o"></i>
+			                        <i class="fa fa-star-o"></i>
+			                        <i class="fa fa-star-o"></i>
+			                    </span>
+                                                <span class="rating-reviews color-light">
+			                    	( <span class="rating-count">241</span> Reviews )
+                                                    </span>
+                                            </div>
+                                            <h3 class="deal-title mb-10 ">
+                                                <a  class="color-light color-h-lighter" th:href="@{'/detail?commodityid='+${shuf.commodityid}}" th:text="${shuf.decription}"></a>
+                                            </h3>
+                                        </div>
+                                    </figure>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                    <!--显示所有商品-->
+                <section class="section latest-deals-area ptb-30">
+                    <header class="panel ptb-15 prl-20 pos-r mb-30">
+                        <h3 class="section-title font-18">商品列表</h3>
+                        <a href="#" class="btn btn-o btn-xs pos-a right-10 pos-tb-center">查看所有</a>
+<!--                        th:href="@{/searchAllByActivity}-->
+                    </header>
+
+                    <div class="row row-masnory row-tb-20">
+                        <div class="col-sm-6 col-lg-4" th:each="goods : ${goodsList}">
+                            <div class="deal-single panel">
+                                <figure class="deal-thumbnail embed-responsive embed-responsive-16by9">
+                                    <img th:src="@{/pictures/}+${goods.path}">
+                                    <div class="label-discount left-20 top-15"></div>
+                                    <ul class="deal-actions top-15 right-20">
+                                        <li class="like-deal" th:onclick="likeDealClick('[[${goods.commodityid}]]',this);">
+                                                <span >
+                                                    <i class="fa fa-heart-o"></i>
+                                                </span>
+                                        </li>
+                                        <li class="share-btn">
+                                            <div class="share-tooltip fade">
+                                                <a target="_blank" href="#"><i class="fa fa-facebook"></i></a>
+                                                <a target="_blank" href="#"><i class="fa fa-twitter"></i></a>
+                                                <a target="_blank" href="#"><i class="fa fa-google-plus"></i></a>
+                                                <a target="_blank" href="#"><i class="fa fa-pinterest"></i></a>
+                                            </div>
+                                            <span><i class="fa fa-share-alt"></i></span>
+                                        </li>
+                                        <li>
+                                                <span>
+                                <i class="fa fa-camera"></i>
+                            </span>
+                                        </li>
+                                    </ul>
+                                    <div class="time-left bottom-15 right-20 font-md-14">
+                                            <span>
+                            <i class="ico fa fa-clock-o mr-10"></i>
+                            <span class="t-uppercase" data-countdown="2019/09/01 01:30:00"></span>
+                        </span>
+                                    </div>
+                                    <div class="deal-store-logo">
+                                        <img th:src="@{/assets/images/brands/brand_01.jpg}" alt="">
+                                    </div>
+                                </figure>
+                                <div class="bg-white pt-20 pl-20 pr-15">
+                                    <div class="pr-md-10">
+                                        <div class="rating mb-10">
+                                                <span class="rating-stars rate-allow" data-rating="5">
+                                <i class="fa fa-star-o"></i>
+                                <i class="fa fa-star-o"></i>
+                                <i class="fa fa-star-o"></i>
+                                <i class="fa fa-star-o"></i>
+                                <i class="fa fa-star-o"></i>
+                            </span>
+                                            <span class="rating-reviews">
+                                ( <span class="rating-count">241</span> rates )
+                                                </span>
+                                        </div>
+                                        <h3 class="deal-title mb-10">
+                                            <a th:href="@{'/detail?commodityid='+${goods.commodityid}}" th:text="${goods.decription}"></a>
+                                        </h3>
+                                        <ul class="deal-meta list-inline mb-10 color-mid">
+                                            <li><i class="ico fa fa-map-marker mr-10"></i>United State</li>
+                                            <li><i class="ico fa fa-shopping-basket mr-10"></i><span th:text="${goods.price}"></span></li>
+                                        </ul>
+                                    </div>
+                                    <div class="deal-price pos-r mb-15">
+                                        <h3 class="price ptb-5 text-right">
+                                            <span th:text="'￥'+${goods.price}"></span>
+                                        </h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </main>
+    <!-- –––––––––––––––[ END PAGE CONTENT ]––––––––––––––– -->
+    <div th:replace="/commons/footer::public_footer"></div>
+    <!-- –––––––––––––––[ FOOTER ]––––––––––––––– -->
+
+    <!-- –––––––––––––––[ END FOOTER ]––––––––––––––– -->
+</div>
+<!-- ––––––––––––––––––––––––––––––––––––––––– -->
+<!-- END WRAPPER                               -->
+<!-- ––––––––––––––––––––––––––––––––––––––––– -->
+
+
+<!-- ––––––––––––––––––––––––––––––––––––––––– -->
+<!-- BACK TO TOP                               -->
+<!-- ––––––––––––––––––––––––––––––––––––––––– -->
+<div id="backTop" class="back-top is-hidden-sm-down">
+    <i class="fa fa-angle-up" aria-hidden="true"></i>
+</div>
+
+<div th:replace="commons/js/js_header_footer :: public_js1"></div>
+</body>
+<script>
+    function likeDealClick(goodsid,object){
+        $.ajax({
+            url:"/collection/change",
+            data:{
+                goodsid:goodsid
+            },
+            type:"post",
+            success:function (data) {
+                layer.msg(data.msg);
+                if(data.msg=="添加收藏成功"){
+                    $(object).find("i").removeClass("fa-heart-o");
+                    $(object).find("i").addClass("fa-heart");
+                }else if (data.msg=="取消收藏成功") {
+                    $(object).find("i").removeClass("fa-heart");
+                    $(object).find("i").addClass("fa-heart-o");
+                }
+            }
+        })
+    }
+</script>
+
+</html>

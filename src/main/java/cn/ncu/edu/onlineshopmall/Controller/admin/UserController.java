@@ -29,11 +29,18 @@ public class UserController {
     }
 
 
+//-------------------下面这个是用户查询功能
+    /**
+     * 根据用户名username查询用户
+     * @returnz
+     */
+    @PostMapping("findUserByUsername")
+    public String findUserByUsername(@RequestParam("username") String username,Map<String,User> map){
+        map.put("userlist", userService.findUserByUsername(username));
+        return "user-list";
 
-//    @RequestMapping(value = "/queryuser",method = RequestMethod.GET)
-//    public User findUserByUsername(@RequestParam(value = "username") String username){
-//        return userService.findUserByUsername(username);
-//    }
+    }
+
 
     /**
      * 注销用户

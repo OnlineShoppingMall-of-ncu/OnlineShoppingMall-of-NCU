@@ -1,0 +1,359 @@
+﻿<!DOCTYPE html>
+<!--[if lt IE 9 ]> <html lang="en" dir="ltr" class="no-js ie-old"> <![endif]-->
+<!--[if IE 9 ]> <html lang="en" dir="ltr" class="no-js ie9"> <![endif]-->
+<!--[if IE 10 ]> <html lang="en" dir="ltr" class="no-js ie10"> <![endif]-->
+<!--[if (gt IE 10)|!(IE)]><!-->
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:float="http://www.w3.org/1999/xhtml"
+      layout:decorate="~{/layout}">
+<!--<![endif]-->
+
+<head>
+
+    <!-- ––––––––––––––––––––––––––––––––––––––––– -->
+    <!-- META TAGS                                 -->
+    <!-- ––––––––––––––––––––––––––––––––––––––––– -->
+    <meta charset="utf-8">
+    <!-- Always force latest IE rendering engine -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Mobile specific meta -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+    <!-- ––––––––––––––––––––––––––––––––––––––––– -->
+    <!-- PAGE TITLE                                -->
+    <!-- ––––––––––––––––––––––––––––––––––––––––– -->
+    <title>FRIDAY | Coupons, Deals, Discounts and Promo codes Template</title>
+
+    <!-- ––––––––––––––––––––––––––––––––––––––––– -->
+    <!-- SEO METAS                                 -->
+    <!-- ––––––––––––––––––––––––––––––––––––––––– -->
+    <meta name="description" content="FRIDAY is a responsive multipurpose-ecommerce site template allows you to store coupons and promo codes from different brands and create store for deals, discounts, It can be used as coupon website such as groupon.com and also as online store">
+    <meta name="	black friday, coupon, coupon codes, coupon theme, coupons, deal news, deals, discounts, ecommerce, friday deals, groupon, promo codes, responsive, shop, store coupons">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="CODASTROID">
+
+    <!-- ––––––––––––––––––––––––––––––––––––––––– -->
+    <!-- PAGE FAVICON                              -->
+    <!-- ––––––––––––––––––––––––––––––––––––––––– -->
+    <div th:replace="commons/css/css_header_footer :: public_css1"></div>
+
+</head>
+
+<body id="body" class="wide-layout preloader-active">
+     
+
+    <!--[if lt IE 9]>
+        <p class="browserupgrade alert-error">
+        	You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.
+        </p>
+    <![endif]-->
+
+    <noscript>
+        <div class="noscript alert-error">
+            For full functionality of this site it is necessary to enable JavaScript. Here are the <a href="http://www.enable-javascript.com/" target="_blank">
+		 instructions how to enable JavaScript in your web browser</a>.
+        </div>
+    </noscript>
+
+    <!-- ––––––––––––––––––––––––––––––––––––––––– -->
+    <!-- PRELOADER                                 -->
+    <!-- ––––––––––––––––––––––––––––––––––––––––– -->
+    <!-- Preloader -->
+    <div id="preloader" class="preloader">
+        <div class="loader-cube">
+            <div class="loader-cube__item1 loader-cube__item"></div>
+            <div class="loader-cube__item2 loader-cube__item"></div>
+            <div class="loader-cube__item4 loader-cube__item"></div>
+            <div class="loader-cube__item3 loader-cube__item"></div>
+        </div>
+    </div>
+    <!-- End Preloader -->
+    <!-- ––––––––––––––––––––––––––––––––––––––––– -->
+    <!-- WRAPPER                                   -->
+    <!-- ––––––––––––––––––––––––––––––––––––––––– -->
+    <div id="pageWrapper" class="page-wrapper">
+        <!-- –––––––––––––––[ HEADER ]––––––––––––––– -->
+        <div th:replace="/commons/header::public_header"></div>
+        <!-- –––––––––––––––[ HEADER ]––––––––––––––– -->
+
+        <!-- –––––––––––––––[ PAGE CONTENT ]––––––––––––––– -->
+        <main id="mainContent" class="main-content">
+            <div class="page-container ptb-10">
+                <div class="container">
+                    <section class="section deals-area ptb-30">
+
+                        <!-- Page Control -->
+                        <header class="page-control panel ptb-15 prl-20 pos-r mb-30">
+
+                            <!-- List Control View -->
+                            <ul class="list-control-view list-inline">
+                                <li><a href="deals_list.html"><i class="fa fa-bars"></i></a>
+                                </li>
+                                <li><a href="deals_grid.html"><i class="fa fa-th"></i></a>
+                                </li>
+                            </ul>
+                            <!-- End List Control View -->
+
+                            <div class="product-select-box">
+                                <div class="product-show">
+                                    <span>单页显示数量:</span>
+                                    <select id="pagehelper" class="nice-select" name="showing"  >
+                                        <option th:selected="${pageSize == 6}" value="1" data-amount='6'>6</option>
+                                        <option th:selected="${pageSize == 9}"  value="2" data-amount='9'>9</option>
+                                        <option th:selected="${pageSize == 12}" value="3" data-amount='12'>12</option>
+                                        <option th:selected="${pageSize == 15}"  value="4" data-amount='15'>15</option>
+                                        <option th:selected="${pageSize == 18}"  value="5" data-amount='18'>18</option>
+                                    </select>
+                                </div>
+                                <div class="product-sort">
+                                </div>
+                            </div>
+
+                            <div class="right-10 pos-tb-center">
+                                <select class="form-control input-sm" onchange="window.location=this.value">
+                                    <option>SORT BY</option>
+                                    <option>Newest items</option>
+                                    <option>Best sellers</option>
+                                    <option>Best rated</option>
+<!--                                    <option th:value="@{'/showCateGoodsByLowPrice?categoryId='+${categoryId}}">Price: low to high</option>-->
+<!--                                    <option th:value="@{'/showCateGoodsByHighPrice?categoryId='+${categoryId}}">Price: high to low</option>-->
+                                </select>
+                            </div>
+
+                            <input type="hidden" id="categoryId" th:value="${category}">
+                        </header>
+                        <!-- End Page Control -->
+                        <div class="row row-masnory row-tb-20">
+                            <!-- 一个商品  -->
+                            <div class="col-sm-6 col-lg-4" th:each="goods : ${goodsList}">
+                                <div class="deal-single panel">
+                                    <figure class="deal-thumbnail embed-responsive embed-responsive-16by9">
+                                        <img th:src="@{/pictures/}+${goods.path}">
+                                        <div class="label-discount left-20 top-15" ></div>
+                                        <ul class="deal-actions top-15 right-20">
+                                            <li class="share-btn">
+                                                <div class="share-tooltip fade">
+                                                    <a target="_blank" href="#"><i class="fa fa-facebook"></i></a>
+                                                    <a target="_blank" href="#"><i class="fa fa-twitter"></i></a>
+                                                    <a target="_blank" href="#"><i class="fa fa-google-plus"></i></a>
+                                                    <a target="_blank" href="#"><i class="fa fa-pinterest"></i></a>
+                                                </div>
+                                                <span><i class="fa fa-share-alt"></i></span>
+                                            </li>
+                                            <li>
+                                                <span>
+                                <i class="fa fa-camera"></i>
+                            </span>
+                                            </li>
+                                        </ul>
+                                        <div class="deal-store-logo">
+                                            <img th:src="@{/assets/images/brands/brand_01.jpg}" alt="">
+                                        </div>
+                                    </figure>
+                                    <div class="bg-white pt-20 pl-20 pr-15">
+                                        <div class="pr-md-10">
+                                            <div class="rating mb-10">
+                                                <span class="rating-stars rate-allow" data-rating="5">
+                                                     <i class="fa fa-star-o"></i>
+                                                     <i class="fa fa-star-o"></i>
+                                                     <i class="fa fa-star-o"></i>
+                                                     <i class="fa fa-star-o"></i>
+                                                     <i class="fa fa-star-o"></i>
+                                               </span>
+                                                <span class="rating-reviews">
+                                              ( <span class="rating-count">241</span> rates )
+                                                </span>
+                                            </div>
+                                            <h3 class="deal-title mb-10">
+                                                <a th:href="@{'/detail?commodityid='+${goods.commodityid}}" th:text="${goods.decription}"></a>
+                                            </h3>
+                                            <ul class="deal-meta list-inline mb-10 color-mid">
+                                                <li><i class="ico fa fa-map-marker mr-10"></i>United State</li>
+                                                <li><i class="ico fa fa-shopping-basket mr-10"></i><span th:text="${goods.sales}"></span></li>
+                                            </ul>
+                                            <p class="text-muted mb-20" th:text="${goods.detailcate}"></p>
+                                        </div>
+                                        <div class="deal-price pos-r mb-15">
+                                            <h3 class="price ptb-5 text-right">
+                                                <span class="price-sale" th:text="'￥'+${goods.price}"></span>
+                                                <span th:text="'￥'+${#numbers.formatDecimal(goods.price*goods.discount/10.0,3,2)}"></span>
+                                            </h3>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Page Pagination -->
+                        <div class="page-pagination text-center mt-30 p-10 panel">
+                            <nav>
+                                <!-- Page Pagination -->
+                                <ul class="page-pagination">
+                                    <input type="number" style="display: none"  th:value="${pageIndex}" id="pageIndex">
+                                    <li id="previous_page"><a class="page-numbers previous">Previous</a></li>
+
+                                    <li th:each="page,stat :${pages}">
+                                        <!--pageIndex < 5 的时候显示前5个标签-->
+                                        <a th:if="(${page} == 1) and (${pageIndex} < 5) and (${page} < ${pageIndex})" th:text="${page}" name="pagen"
+                                           href="javascript:void(0);" onclick="pagenumm(this)" class="page-numbers"> </a>
+
+                                        <a th:if="(${page} == 2) and (${pageIndex} < 5) and (${page} != ${pageIndex})" th:text="${page}" name="pagen"
+                                           href="javascript:void(0);" onclick="pagenumm(this)" class="page-numbers"> </a>
+
+                                        <a th:if="(${page} == 3) and (${pageIndex} < 5 )and (${page} != ${pageIndex}) " th:text="${page}" name="pagen"
+                                           href="javascript:void(0);" onclick="pagenumm(this)" class="page-numbers"> </a>
+                                        <a th:if="(${page} == 4) and (${pageIndex} < 5 )and (${page} != ${pageIndex})" th:text="${page}" name="pagen"
+                                           href="javascript:void(0);" onclick="pagenumm(this)" class="page-numbers"> </a>
+                                        <a th:if="(${page} == 5) and (${pageIndex} < 5 )and (${page} != ${pageIndex})" th:text="${page}" name="pagen"
+                                           href="javascript:void(0);" onclick="pagenumm(this)" class="page-numbers"> </a>
+
+                                        <!--page 与 pageindex 相等的时候变亮-->
+                                        <a th:if="(${page} == ${pageIndex})" th:text="${page}" name="pagen"
+                                           href="javascript:void(0);" onclick="pagenumm(this)" class="page-numbers current"> </a>
+
+                                        <a th:if="(${page} == 1) and (${pageIndex} >= 5) " th:text="${page}" name="pagen"
+                                           href="javascript:void(0);" onclick="pagenumm(this)" class="page-numbers"> </a>
+                                        <a th:if="(${page} == 2) and (${pageIndex} >= 5)" th:text="${page}" name="pagen"
+                                           href="javascript:void(0);" onclick="pagenumm(this)" class="page-numbers"> </a>
+                                        <a th:if="(${page} == 3) and (${pageIndex} >= 5)" th:text="..." name="pagen"
+                                           href="javascript:void(0);" class="page-numbers"> </a>
+
+                                        <!--显示当前pageindex 前后两个标签-->
+                                        <a th:if="(${page} != ${pageIndex}) and (${pageIndex} >= 5) and (${page} <= ${pageIndex}+2 and ${stat.index} >= (${pageIndex}-3))" th:text="${page}" name="pagen"
+                                           href="javascript:void(0);" onclick="pagenumm(this)" class="page-numbers"> </a>
+
+                                        <!--当前标签后显示为。。。-->
+                                        <a th:if="${page} == (${pageIndex} + 3) " th:text="..." name="pagen"
+                                           href="javascript:void(0);" class="page-numbers"> </a>
+                                        <a th:if="${page} >= (${pageIndex} + 3)" type="hidden"> </a>
+
+
+                                            <span th:if="${page} >= (${pageIndex} + 3)">
+                                            <!--显示最后一个标签-->
+                                            <a th:if="(${stat.last}) and (${page} != ${pageIndex})" th:text="${page}" name="pagen"
+                                               href="javascript:void(0);" onclick="pagenumm(this)" class="page-numbers"> </a>
+                                            </span>
+
+
+                                        <!--&lt;!&ndash;page 与 pageindex 相等的时候变亮&ndash;&gt;-->
+                                        <!--<a th:if="(${page} == ${pageIndex})" th:text="${page}" name="pagen"-->
+                                        <!--href="javascript:void(0);" onclick="pagenumm(this)" class="page-numbers current"> </a>-->
+
+                                        <!--<a th:if="(${stat.index} < ${pageIndex} and ${stat.index} > (${pageIndex}-8)) and (${page} != ${pageIndex})" th:text="${page}" name="pagen"-->
+                                        <!--href="javascript:void(0);" onclick="pagenumm(this)" class="page-numbers"> </a>-->
+
+                                        <!--<a th:if="${page} == (${pageIndex} + 8)" th:text="..." name="pagen"-->
+                                        <!--href="javascript:void(0);" onclick="pagenumm(this)" class="page-numbers"> </a>-->
+
+                                        <!--<a th:if="${page} >= 8" type="hidden"> </a>-->
+
+
+                                        <!--<a th:if="(${stat.last}) and (${page} != ${pageIndex})" th:text="${page}" name="pagen"-->
+                                        <!--href="javascript:void(0);" onclick="pagenumm(this)" class="page-numbers"> </a>-->
+
+                                    </li>
+
+                                    <li id="next_page"><a class="page-numbers next">Next</a></li>
+                                </ul>
+                                <!-- End Page Pagination -->
+
+                            </nav>
+                        </div>
+                        <!-- End Page Pagination -->
+                    </section>
+
+                </div>
+            </div>
+
+
+        </main>
+        <!-- –––––––––––––––[ END PAGE CONTENT ]––––––––––––––– -->
+
+        <!-- –––––––––––––––[ FOOTER ]––––––––––––––– -->
+        <div th:replace="/commons/footer::public_footer"></div>
+        <!-- –––––––––––––––[ END FOOTER ]––––––––––––––– -->
+
+    </div>
+    <!-- ––––––––––––––––––––––––––––––––––––––––– -->
+    <!-- END WRAPPER                               -->
+    <!-- ––––––––––––––––––––––––––––––––––––––––– -->
+
+
+    <!-- ––––––––––––––––––––––––––––––––––––––––– -->
+    <!-- BACK TO TOP                               -->
+    <!-- ––––––––––––––––––––––––––––––––––––––––– -->
+    <div id="backTop" class="back-top is-hidden-sm-down">
+        <i class="fa fa-angle-up" aria-hidden="true"></i>
+    </div>
+
+    <div th:replace="commons/js/js_header_footer :: public_js1"></div>
+
+
+    <script type="text/javascript">
+        var category = $("#category").val();
+        $(document).ready(function () {
+            refreshto();
+        })
+
+        $("#pagehelper").change(function(){
+            var pagesize= $("#pagehelper").find("option:selected").attr("data-amount");
+            window.location="getByCategory"+"?category="+category+"&pageNum=1"+"&pageSize="+pagesize;
+        });
+
+        function pagenumm(object) {
+            var pagesize= $("#pagehelper").find("option:selected").attr("data-amount");
+            //var pagenums = $("*[name='pagen']").val();
+            var pagenums = object.text;
+            // alert(pagenums);
+            // alert(pagesize);
+
+
+            window.location="getByCategory"+"?category="+category+"&pageNum="+pagenums+"&pageSize="+pagesize+"&pageIndex="+pagenums;
+
+        }
+
+        function refreshto() {
+            //将input 的值强制转化为int
+            console.log($("#pageIndex").val());
+
+            var pageIndex = parseInt($("#pageIndex").val());
+            var num = parseInt(1);
+
+            var pagesize= $("#pagehelper").find("option:selected").attr("data-amount");
+
+            $("#previous_page").click(function () {
+                window.location="getByCateId"+"?categoryId="+categoryId+"&pageNum="+(pageIndex - num)+"&pageSize="+pagesize+"&pageIndex="+(pageIndex - num);
+            })
+
+            $("#next_page").click(function () {
+                window.location="getByCateId"+"?categoryId="+categoryId+"&pageNum="+(pageIndex + num)+"&pageSize="+pagesize+"&pageIndex="+(pageIndex + num);
+            })
+
+
+        }
+
+        function likeDealClick(goodsid,object){
+            $.ajax({
+                url:"/collection/change",
+                data:{
+                    goodsid:goodsid
+                },
+                type:"post",
+                success:function (data) {
+                    layer.msg(data.msg);
+                    if(data.msg=="添加收藏成功"){
+                        $(object).find("i").removeClass("fa-heart-o");
+                        $(object).find("i").addClass("fa-heart");
+                    }else if (data.msg=="取消收藏成功") {
+                        $(object).find("i").removeClass("fa-heart");
+                        $(object).find("i").addClass("fa-heart-o");
+                    }
+                }
+            })
+        }
+    </script>
+
+
+</body>
+
+</html>
