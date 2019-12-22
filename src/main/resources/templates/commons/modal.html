@@ -1,0 +1,321 @@
+
+<!-- 编辑用户模态框 -->
+<div class="modal fade" id="editUserModal" th:fragment="editUserModal" tabindex="-1" role="dialog"
+     aria-labelledby="myModalLabel" xmlns:th="http://www.w3.org/1999/xhtml">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">编辑用户</h4>
+            </div>
+            <div class="modal-body">
+                <form id="editForm" class="form-horizontal">
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">用户ID</label>
+                        <div class="col-sm-10">
+                            <input type="text" id="editId" name="userId" class="form-control" readonly>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">用户名</label>
+                        <div class="col-sm-10">
+                            <input type="text" id="editUserName" name="username" class="form-control" placeholder="请输入用户名">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">邮箱</label>
+                        <div class="col-sm-10">
+                            <input type="text" id="editEmail" name="email" class="form-control" placeholder="请输入邮箱">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">联系电话</label>
+                        <div class="col-sm-10">
+                            <input type="text" id="editTel" name="telephone" class="form-control" placeholder="请输入联系电话">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">
+                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> 取消
+                </button>
+                <button type="button" class="btn btn-primary" onclick="editRequest()">
+                    <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> 保存
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--修改商品分类模态框-->
+<div class="modal fade" id="editCategoryModal" th:fragment="editCategoryModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">修改分类名称</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" id="editCategoryForm" name="update-form" method="post">
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">分类ID</label>
+                        <div class="col-sm-10">
+                            <input type="text" id="editCateId" name="cateId" class="form-control" readonly>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="editCategoryName" class="col-sm-2 control-label">分类名</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="editCategoryName" name="categoryName">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-primary" onclick="editRequest()">保存</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--修改商品信息模态框-->
+<div class="modal fade" id="editGoodsModal" th:fragment="editGoodsModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="ModalLabel">修改商品信息</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" id="update-form" name="update-form" method="post">
+                    <div class="form-group">
+                        <label for="goodsid" class="col-sm-2 control-label">id</label>
+                        <div class="col-sm-9">
+                            <input type="text" id="goodsid" name="goodsid" class="form-control" readonly>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="goodsname" class="col-sm-2 control-label">商品名</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" name="goodsname" id="goodsname">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="price" class="col-sm-2 control-label">价格</label>
+                        <div class="col-sm-9">
+                            <input type="number" class="form-control" name="price" id="price">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="num" class="col-sm-2 control-label">数量</label>
+                        <div class="col-sm-9">
+                            <input type="number" class="form-control" id="num" name="num">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="description" class="col-sm-2 control-label">描述</label>
+                        <div class="col-sm-9">
+                            <textarea class="form-control" id="description" name="description"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="category" class="col-sm-2 control-label">类别</label>
+                        <div class="col-sm-9">
+                            <select class="form-control" id="category" name="category">
+                                <option  th:each="list:${categories}" th:value="${list.cateid}" th:text="${list.catename }"></option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="detailcate" class="col-sm-2 control-label">详细分类</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="detailcate" name="detailcate">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-primary" onclick="editRequest()">保存</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- 编辑活动模态框 -->
+<div class="modal fade" id="editActivityModal" th:fragment="editActivityModal" tabindex="-1" role="dialog"
+     aria-labelledby="myModalLabel" >
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">编辑活动</h4>
+            </div>
+            <div class="modal-body">
+                <form id="editActivityForm" class="form-horizontal">
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">ID</label>
+                        <div class="col-sm-10">
+                            <input type="text" id="editActivityId" name="activityId" class="form-control" readonly>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">活动名</label>
+                        <div class="col-sm-10">
+                            <input type="text" id="editName" name="activityname" class="form-control" placeholder="请输入活动名">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">活动描述</label>
+                        <div class="col-sm-10">
+                            <input type="text" id="des" name="email" class="form-control" >
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">折扣</label>
+                        <div class="col-sm-10">
+                            <input type="text" id="discount" name="discount" class="form-control" placeholder="折扣">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">满（￥）</label>
+                        <div class="col-sm-10">
+                            <input type="text" id="Fullprice" name="fullprice" class="form-control" placeholder="原价">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">减（￥）</label>
+                        <div class="col-sm-10">
+                            <input type="text" id="Reduceprice" name="reduceprice" class="form-control" placeholder="现价">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">满（个）</label>
+                        <div class="col-sm-10">
+                            <input type="text" id="Fullnum" name="fullnum" class="form-control" placeholder="原数量">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">免（个）</label>
+                        <div class="col-sm-10">
+                            <input type="text" id="Reducenum" name="reducenum" class="form-control" placeholder="现数量">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">
+                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> 取消
+                </button>
+                <button type="button" class="btn btn-primary" onclick="editRequest()">
+                    <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> 保存
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- 增加活动模态框 -->
+<div class="modal fade" id="addActivityModal" th:fragment="addActivityModal" tabindex="-1" role="dialog"
+     aria-labelledby="myModalLabel" >
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">编辑活动</h4>
+            </div>
+            <div class="modal-body">
+                <form id="addForm" class="form-horizontal">
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">活动名</label>
+                        <div class="col-sm-10">
+                            <input type="text" id="activityname" name="activityname" class="form-control" placeholder="请输入活动名">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">活动描述</label>
+                        <div class="col-sm-10">
+                            <input type="text" id="activitydes" name="activitydes" class="form-control" >
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">折扣</label>
+                        <div class="col-sm-10">
+                            <input type="text" id="adddiscount" name="discount" class="form-control" placeholder="折扣">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">满（￥）</label>
+                        <div class="col-sm-10">
+                            <input type="text" id="addfullprice" name="fullprice" class="form-control" placeholder="原价">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">减（￥）</label>
+                        <div class="col-sm-10">
+                            <input type="text" id="addreduceprice" name="reduceprice" class="form-control" placeholder="现价">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">满（个）</label>
+                        <div class="col-sm-10">
+                            <input type="text" id="addfullnum" name="fullnum" class="form-control" placeholder="原数量">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">减（个）</label>
+                        <div class="col-sm-10">
+                            <input type="text" id="addreducenum" name="reducenum" class="form-control" placeholder="现数量">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">
+                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> 取消
+                </button>
+                <button type="button" class="btn btn-primary" id="addActivity">
+                    <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> 保存
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--商品评论模态框-->
+<div class="modal fade" id="evaluate" tabindex="-1" role="dialog" aria-labelledby="myModalLabelPsw" th:fragment="addComment">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabelPsw">商品评价</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" id="updatePsw-form" name="update-form" method="post">
+                    <div>
+                        <label for="star" class="col-sm-2 control-label" style="margin-left: -10px;">商品评分</label>
+                        <div class="col-sm-9">
+                            <div id="star" data-num="3.5"   style="display: inline-flex;cursor: pointer;width: 15px;"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="description" class="col-sm-2 control-label">详细描述</label>
+                        <div class="col-sm-9">
+                            <textarea class="form-control" name="content" rows="3" id="desc"></textarea>
+                        </div>
+                    </div>
+
+
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-primary" id="saveEvaluate" >保存</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -41,7 +41,10 @@ public class LoginController {
     public String confirmLogin(@RequestParam("username")String username, @RequestParam("password") String password, Model model, HttpServletRequest request){
 
         User admin = userService.findUserByUsername(username);
-        if (admin == null||!(admin.getPassword().equals(password))){
+        if(admin.getRole()!=2&&admin.getRole()!=3){
+                model.addAttribute("errorMsg","您不是商家也不是管理员");
+                return "admin-login";
+        }else if (admin == null||!(admin.getPassword().equals(password))){
             model.addAttribute("errorMsg", "用户名或密码错误");
             return "admin-login";
         }else

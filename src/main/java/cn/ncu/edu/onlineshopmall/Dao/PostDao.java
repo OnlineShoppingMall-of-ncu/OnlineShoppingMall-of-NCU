@@ -33,10 +33,6 @@ public interface PostDao {
 
 
 
-
-
-
-
     /*
      **插入帖子信息
      */
