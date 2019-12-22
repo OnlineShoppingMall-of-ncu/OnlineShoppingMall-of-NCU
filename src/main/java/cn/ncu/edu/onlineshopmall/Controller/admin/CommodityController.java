@@ -15,6 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 
 @Controller
@@ -29,12 +30,17 @@ public class CommodityController {
 
     @RequestMapping("searchAllGoods")
     public String SerchAll(Model model, HttpSession Session){
+
         User user=(User)Session.getAttribute("admin");
         if(user.getRole()==3)
+
             model.addAttribute("GoodsList",commodityService.findAllCommodity());
+
         else  if (user.getRole()==2){
+
             Shop shop=shopService.findShopByUsername(user.getUsername());
-            model.addAttribute("MyGoodList", commodityService.findAllCommdityByShopid(shop.getShopid()));
+            List<Commodity> MyGoodList=commodityService.findAllCommodityByShopid(shop.getShopid());
+            model.addAttribute("GoodsList", MyGoodList);
         }
         return "goods-list";
     }

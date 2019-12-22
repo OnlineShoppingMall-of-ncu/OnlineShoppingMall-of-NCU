@@ -83,7 +83,7 @@
             <!-- sidebar menu: : style can be found in sidebar.less -->
             <ul class="sidebar-menu" data-widget="tree">
                 <li class="header">主导航</li>
-                <li class="treeview" disabled="${LoginUser.role!=3}?'true'">
+                <li class="treeview" th:if="${session.admin.role==3}">
                     <a href="#">
                         <i class="fa fa-users"></i> <span>用户管理</span>
                         <span class="pull-right-container">
@@ -123,7 +123,7 @@
                         </span>
                     </a>
                     <ul class="treeview-menu" >
-                     <li><a th:href="@{/indent}"><i class="fa fa-circle-o"></i>所有订单</a></li>
+                     <li><a th:href="@{/order/findorder(username=${session.admin.username}, role=${session.admin.role})}"><i class="fa fa-circle-o"></i>所有订单</a></li>
                     </ul>
                 </li>
             </ul>

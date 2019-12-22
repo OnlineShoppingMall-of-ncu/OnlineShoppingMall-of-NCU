@@ -26,7 +26,7 @@ public class CommodityService {
      * @param id
      * @return
      */
-    public List<Commodity> findAllCommdityByShopid(String id){
+    public List<Commodity> findAllCommodityByShopid(String id){
         return commodityDao.findCommodityByShopid(id);
     }
 

@@ -1,5 +1,6 @@
 package cn.ncu.edu.onlineshopmall.Controller.front;
 
+import cn.ncu.edu.onlineshopmall.Service.ShopService;
 import cn.ncu.edu.onlineshopmall.Service.UserService;
 import cn.ncu.edu.onlineshopmall.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import java.util.Map;
+import java.util.UUID;
 
 @Controller
 @RequestMapping("/users")
@@ -16,6 +18,9 @@ public class CustomerController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private ShopService shopService;
 
     @RequestMapping("/login")
     public String UserLogin(){
@@ -78,7 +83,12 @@ public class CustomerController {
             userService.InsertUser(user1);
             if(user1.getRole()==1)
             return "redirect:/users/login";
-            else return "redirect:/admin/login";
+
+            else {
+                String shopid= UUID.randomUUID().toString().substring(0,7);
+                shopService.InsertShop(shopid,user1.getUsername());
+                return "redirect:/admin/login";
+            }
         }
     }
 }

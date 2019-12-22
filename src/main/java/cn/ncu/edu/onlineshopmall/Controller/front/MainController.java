@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -21,10 +22,8 @@ public class MainController {
 
     //主页面部分商品展示
     @RequestMapping("/main")
-    public String showAllGoods(Model model, HttpServletRequest request) {
-
+    public String showAllGoods(Model model, HttpSession session) {
         List<Commodity> goodsList = goodsService.findAllCommodity();
-//        User user = (User) request.getSession().getAttribute("Users");
 
         //轮播图展示3个商品：1个随机活动商品，一个最新上架商品，一个销量最高商品
         Random rand = new Random();

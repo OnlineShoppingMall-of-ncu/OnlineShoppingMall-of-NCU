@@ -1,6 +1,8 @@
 package cn.ncu.edu.onlineshopmall.Controller.admin;
 
+import cn.ncu.edu.onlineshopmall.Service.ShopService;
 import cn.ncu.edu.onlineshopmall.Service.UserService;
+import cn.ncu.edu.onlineshopmall.entity.Shop;
 import cn.ncu.edu.onlineshopmall.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,7 +19,10 @@ import javax.servlet.http.HttpSession;
 @RequestMapping("/admin")
 public class LoginController {
     @Autowired
-    UserService userService ;
+    private UserService userService ;
+
+    @Autowired
+    private ShopService shopService;
 
     @RequestMapping("/login")
     public String adminLogin() {
@@ -41,8 +46,10 @@ public class LoginController {
             return "admin-login";
         }else
             {
-            HttpSession session = request.getSession();
-            session.setAttribute("admin",admin);
+                Shop myshop=shopService.findShopByUsername(admin.getUsername());
+                HttpSession session = request.getSession();
+                session.setAttribute("admin",admin);
+                session.setAttribute("myshopid",myshop.getShopid());
             return "redirect:/admin/success";
         }
     }

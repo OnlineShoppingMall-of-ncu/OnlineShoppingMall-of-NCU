@@ -79,8 +79,8 @@
                                     <input type="number" class="form-control" id="inputWithWarning" name="price">
                                 </div>
                                 <div class="col-lg-6 form-group">
-                                    <label class="control-label" for="inputshopid">店铺编号</label>
-                                    <input type="number" class="form-control" id="inputshopid" name="shopid">
+                                    <label class="control-label" for="inputshopid">店铺编号：[[${session.myshopid}]]</label>
+                                    <input class="form-control" id="inputshopid" name="shopid" th:value="${session.myshopid}" type="hidden">
                                 </div>
                             </div>
                             <div class="row form-group">
