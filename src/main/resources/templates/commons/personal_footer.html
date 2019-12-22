@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+<!-- –––––––––––––––[ FOOTER ]––––––––––––––– -->
+<div th:fragment="personal_footer">
+    <div class="footer">
+        <div class="footer-hd">
+            <p>
+                <a href="#">恒望科技</a>
+                <b>|</b>
+                <a href="#">商城首页</a>
+                <b>|</b>
+                <a href="#">支付宝</a>
+                <b>|</b>
+                <a href="#">物流</a>
+            </p>
+        </div>
+        <div class="footer-bd">
+            <p>
+                <a href="#">关于恒望</a>
+                <a href="#">合作伙伴</a>
+                <a href="#">联系我们</a>
+                <a href="#">网站地图</a>
+                <em>© 2015-2025 Hengwang.com 版权所有</em>
+            </p>
+        </div>
+    </div>
+</div>
+<!-- –––––––––––––––[ MENU ]––––––––––––––– -->
+<!--<div th:fragment="personal_menu">-->
+<!--    <aside class="menu" >-->
+<!--        <ul>-->
+<!--            <li class="person">-->
+<!--                <a th:href="@{/users/index}">个人中心</a>-->
+<!--            </li>-->
+<!--        </ul>-->
+<!--        <ul>-->
+<!--            <li class="person">-->
+<!--                <a th:href="@{/finduserorder}+${session.Users.username})">我的订单</a>-->
+<!--            </li>-->
+<!--        </ul>-->
+<!--        <ul>-->
+
+<!--            <li class="person">-->
+<!--                <a  th:href="@{/finduserevaluation}+${session.Users.username})">我的评价</a>-->
+<!--            </li>-->
+<!--        </ul>-->
+<!--    </aside>-->
+<!--</div>-->
+<div th:fragment="personal_menu">
+    <style>
+        .bang_index_list_tab{
+
+            width: 980px;
+            height: 40px;
+            margin-top:0px;
+            margin-left: 30px;
+            display: flex;
+            overflow: hidden;
+            align-content: center;
+        }
+
+        .bang_index_list_tab_big{
+
+            list-style: none;
+            margin-left: 10px;
+            color: #323232;
+            font-size: 15px;
+            font-family: 黑体, serif;
+            font-weight:bolder;
+            width: 110px;
+            height: 20px;
+            margin-top: 20px;
+            overflow: hidden;
+
+
+        }
+
+    </style>
+    <!--标题 -->
+    <div class="am-cf am-padding">
+        <div class="am-fl am-cf"><strong class="am-text-danger am-text-lg">亲爱的[[${session.Users.username}]],欢迎来到个人中心！</strong> / <small>Order</small></div>
+    </div>
+    <div style="width: 100%;height: 50px">
+    <ul class="bang_index_list_tab">
+
+        <li  class="bang_index_list_tab_big"><a th:href="@{/finduserorder}+${session.Users.username}">我的订单</a></li><!--href="#bestsellers"-->
+
+        <li  class="bang_index_list_tab_big"><a  th:href="@{/finduserevaluation}+${session.Users.username}">我的评价</a></li><!--href="#bestsellers"-->
+    </ul>
+    </div>
+</div>
+<!--用户订单中心导航栏-->
+<div th:fragment="personal_indent">
+    <div class="order-top">
+        <div class="th th-item">
+            <td class="td-inner">商品</td>
+        </div>
+        <div class="th th-price">
+            <td class="td-inner">单价</td>
+        </div>
+        <div class="th th-number">
+            <td class="td-inner">数量</td>
+        </div>
+        <div class="th th-operation">
+            <td class="td-inner">商品操作</td>
+        </div>
+        <div class="th th-amount">
+            <td class="td-inner">合计</td>
+        </div>
+        <div class="th th-status">
+            <td class="td-inner">交易状态</td>
+        </div>
+        <div class="th th-change">
+            <td class="td-inner">交易操作</td>
+        </div>
+    </div>
+</div>
+</body>
+</html>

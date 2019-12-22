@@ -51,8 +51,8 @@ public class EvaluationService {
      * @param commodityid
      * @param content
      */
-    public void InsertEvaluation(String eavaluation,String username,String commodityid,String content){
-        EvaluationDao.InsertEvaluation(eavaluation,username,commodityid,content);
+    public void InsertEvaluation(String eavaluationid,String username,String commodityid,String content){
+        EvaluationDao.InsertEvaluation(eavaluationid,username,commodityid,content);
     }
 
     /**
