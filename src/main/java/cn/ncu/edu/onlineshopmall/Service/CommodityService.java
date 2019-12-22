@@ -22,6 +22,17 @@ public class CommodityService {
     }
 
     /**
+     * 分页查询所有商品
+     * @param pageNum
+     * @param pageSize
+     * @return
+     */
+    public List<Commodity> selectAllCommodityByPage(Integer pageNum,Integer pageSize){
+        PageHelper.startPage(pageNum,pageSize);
+        return commodityDao.findAllCommodity();
+    }
+
+    /**
      * 根据店铺查找商品
      * @param id
      * @return

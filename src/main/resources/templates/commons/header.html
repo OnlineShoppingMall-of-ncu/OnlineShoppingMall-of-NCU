@@ -62,7 +62,11 @@
                                         <div class="input-group">
                                             <select class="form-control input-lg search-select" onchange="window.location=this.value">
                                                 <option class="-audio-description"><span th:text="请选择分类"></span></option>
-                                                <option class="select2-results__option" th:each="category:${categoryList}" th:value="@{/getByCateId?categoryId=}+${category.cateid}" ><span th:text="${category.catename}"></span></option>
+                                                <option value="数码">数码</option>
+                                                <option value="服饰">服饰</option>
+                                                <option value="家电">家电</option>
+                                                <option value="书籍">书籍</option>
+                                                <option value="少儿">少儿</option>
                                             </select>
                                             <div class="input-group-btn">
                                                 <button type="submit" class="btn btn-lg btn-search btn-block" id="btn1">
@@ -144,7 +148,7 @@
 										                    </span>
                                                 </div>
                                                 <h6 class="deal-title mb-10">
-                                                    <a href="deal_single.html" class="color-lighter">Aenean ut orci vel
+                                                    <a href="#" class="color-lighter">Aenean ut orci vel
                                                         massa</a>
                                                 </h6>
                                             </div>
@@ -165,7 +169,7 @@
 										                    </span>
                                                 </div>
                                                 <h6 class="deal-title mb-10">
-                                                    <a href="deal_single.html" class="color-lighter">Aenean ut orci vel
+                                                    <a href="#" class="color-lighter">Aenean ut orci vel
                                                         massa</a>
                                                 </h6>
                                             </div>
@@ -186,7 +190,7 @@
 										                    </span>
                                                 </div>
                                                 <h6 class="deal-title mb-10">
-                                                    <a href="deal_single.html" class="color-lighter">Aenean ut orci vel
+                                                    <a href="#" class="color-lighter">Aenean ut orci vel
                                                         massa</a>
                                                 </h6>
                                             </div>

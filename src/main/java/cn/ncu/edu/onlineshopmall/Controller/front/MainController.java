@@ -3,6 +3,7 @@ package cn.ncu.edu.onlineshopmall.Controller.front;
 import cn.ncu.edu.onlineshopmall.Service.CommodityService;
 import cn.ncu.edu.onlineshopmall.entity.Commodity;
 import cn.ncu.edu.onlineshopmall.entity.User;
+import com.github.pagehelper.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -71,9 +72,8 @@ public class MainController {
 
     //展示所有商品
     @RequestMapping("/jump")
-    public String junmp(Model model, Integer pageSize, Integer pageNum, Integer pageIndex, HttpServletRequest request) {
+    public String junmp(Model model, Integer pageSize, Integer pageNum, Integer pageIndex) {
 
-        User user = (User) request.getSession().getAttribute("Users");
         if (pageSize == null) {
             pageSize = 6;
         }
@@ -84,20 +84,17 @@ public class MainController {
             pageIndex = 1;
         }
 
-
-//        List<Goods> goodsList = goodsService.findAllProducts(pageSize,pageNum);
-//        int total = (int) ((Page) goodsList).getTotal();
-//        int num = total%pageSize == 0? total/pageSize:total/pageSize+1;
-//        int page[] = new int[num];
-//        for(int i =0;i<num;i++){
-//            page[i]=i+1;
-//        }
-//        List<Category> categoryList=cateService.listCategoryAndGoodNumber();
-//        model.addAttribute("categoryList",categoryList);
-//        model.addAttribute("goodsList",setGoodsListCollection(goodsList,user));
-//        model.addAttribute("pages",page);
-//        model.addAttribute("pageSize",pageSize);
-//        model.addAttribute("pageIndex",pageIndex);
+        List<Commodity> goodsList = goodsService.selectAllCommodityByPage(pageSize,pageNum);
+        int total = (int) ((Page) goodsList).getTotal();
+        int num = total%pageSize == 0? total/pageSize:total/pageSize+1;
+        int page[] = new int[num];
+        for(int i =0;i<num;i++){
+            page[i]=i+1;
+        }
+        model.addAttribute("goodsList",goodsList);
+        model.addAttribute("pages",page);
+        model.addAttribute("pageSize",pageSize);
+        model.addAttribute("pageIndex",pageIndex);
         return "deals_grid";
     }
 

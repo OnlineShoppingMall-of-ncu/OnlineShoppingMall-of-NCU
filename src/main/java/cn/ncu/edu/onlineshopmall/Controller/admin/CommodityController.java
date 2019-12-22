@@ -28,6 +28,12 @@ public class CommodityController {
     @Autowired
     private ShopService shopService;
 
+    /**
+     *
+     * @param model
+     * @param Session
+     * @return
+     */
     @RequestMapping("searchAllGoods")
     public String SerchAll(Model model, HttpSession Session){
 
@@ -44,12 +50,24 @@ public class CommodityController {
         }
         return "goods-list";
     }
+
+    /**
+     *
+     * @param commodityid
+     * @return
+     */
     @RequestMapping(value = "deleteGoodsById",method = RequestMethod.GET)
     public String deleteById(@RequestParam("commodityid")String commodityid) {
         commodityService.deleteCommodityById(commodityid);
         return "redirect:/goods/searchAllGoods";
     }
 
+    /**
+     *
+     * @param msg
+     * @param model
+     * @return
+     */
     @RequestMapping("/add")
     public String addgoods(@ModelAttribute("successMsg")String msg,Model model){
         //若添加商品成功，则接收/addSuccess传过来的消息并传给add-list页面
@@ -60,6 +78,13 @@ public class CommodityController {
         return "add-goods";
     }
 
+    /**
+     *
+     * @param goods
+     * @param fileToUpload
+     * @param redirectAttributes
+     * @return
+     */
     @RequestMapping("/addGoodsSuccess")
     public String addGoods(Commodity goods, @RequestParam MultipartFile[] fileToUpload, RedirectAttributes redirectAttributes){
 
@@ -82,5 +107,17 @@ public class CommodityController {
         redirectAttributes.addFlashAttribute("successMsg","商品添加成功！");
         return "redirect:/goods/add";
     }
+
+    /**
+     * 根据商品编号查询商品
+     * @returnz
+     */
+    @PostMapping("/findGoodsByid")
+    public String findGoodsByid(@RequestParam("Goodsid") String Goodsid,Model model){
+        model.addAttribute("ThisGoods",commodityService.findGoodsById(Goodsid));
+        return "goods-list";
+
+    }
+
 
 }

@@ -27,11 +27,11 @@ public class CustomerController {
         return "sigin";
     }
 
-    @RequestMapping("/success")
-    public String siginSuccess(){
+    @RequestMapping("/logout")
+    public String UserLogout(HttpSession session){
+        session.removeAttribute("Users");
         return "index";
     }
-
 
     @RequestMapping(value = "/loginconfirm",method = RequestMethod.POST)
     public String login(@RequestParam("username") String username,
@@ -42,7 +42,7 @@ public class CustomerController {
         if(user != null && user.getPassword().equals(password)) {
             session.setAttribute("Users", user);
             System.out.println(user);
-            return "redirect:/users/success";
+            return "redirect:/main";
         } else {
             model.addAttribute("msg", "账号或密码输入错误");
             return "sigin";
