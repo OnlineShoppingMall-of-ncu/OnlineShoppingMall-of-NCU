@@ -24,10 +24,10 @@ public interface CommodityDao {
 
 
     /*
-     **通过商品分类Category来查询商品
+     **通过商品分类category来查询商品
      */
-    @Select("SELECT * FROM commodity WHERE Category= #{Category}")
-    List<Commodity> findCommodityByCategory(@Param("Category") String Category);
+    @Select("select *from commodity where category=#{category}")
+    List<Commodity> findCommodityByCategory(@Param("category") String category);
 
 
 

@@ -62,11 +62,7 @@
                                         <div class="input-group">
                                             <select class="form-control input-lg search-select" onchange="window.location=this.value">
                                                 <option class="-audio-description"><span th:text="请选择分类"></span></option>
-                                                <option value="数码">数码</option>
-                                                <option value="服饰">服饰</option>
-                                                <option value="家电">家电</option>
-                                                <option value="书籍">书籍</option>
-                                                <option value="少儿">少儿</option>
+                                                <option th:each="category:${session.categoryList}" th:value="@{/getByCate?category=}+${category}" ><span th:text="${category}"></span></option>
                                             </select>
                                             <div class="input-group-btn">
                                                 <button type="submit" class="btn btn-lg btn-search btn-block" id="btn1">

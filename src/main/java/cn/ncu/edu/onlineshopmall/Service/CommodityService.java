@@ -5,6 +5,7 @@ import cn.ncu.edu.onlineshopmall.entity.Commodity;
 import com.github.pagehelper.PageHelper;
 import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -22,12 +23,12 @@ public class CommodityService {
     }
 
     /**
-     * 分页查询所有商品
-     * @param pageNum
+     *
      * @param pageSize
+     * @param pageNum
      * @return
      */
-    public List<Commodity> selectAllCommodityByPage(Integer pageNum,Integer pageSize){
+    public List<Commodity> selectAllCommodityByPage(Integer pageSize,Integer pageNum){
         PageHelper.startPage(pageNum,pageSize);
         return commodityDao.findAllCommodity();
     }
@@ -94,6 +95,20 @@ public class CommodityService {
         PageHelper.startPage(pageNum,pageSize);
         return commodityDao.findCommodityByCategory(category);
 
+    }
+
+    /**
+     * 按数量查询
+     * @param number
+     * @return
+     */
+    public List<Commodity> findGoodsLIimtNumber(int number){
+        List<Commodity> List=commodityDao.findAllCommodity();
+        List<Commodity> list=new ArrayList<>();
+        for(int i=0;i<number;i++){
+            list.add(List.get(i));
+        }
+        return list;
     }
 
 }

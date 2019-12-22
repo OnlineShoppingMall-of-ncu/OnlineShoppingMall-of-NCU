@@ -72,19 +72,40 @@
                         <div class="box-body">
                             <div id="toolbar">
                                 <div class="form-inline" role="form">
-                                        <form th:action="@{/goods/findGoodsByid}" method="post" class="form-inline">
-                                        <label for="keyword">查询商品: </label>
-                                        <input name="username" class="form-control" type="text" id="keyword">
-                                        <button id="searchBtn" type="submit" class="btn btn-primary"
-                                                style="margin-left: 5px">
-                                            查询
-                                        </button>
-                                         </form>
-                                    <a th:href="@{/goods/add}">
-                                        <button id="createBtn" type="submit" class="btn btn-info" style="margin-left: 30px">
-                                            添加商品
-                                        </button>
-                                    </a>
+
+                                    <table class="table table-hover table-responsive">
+                                        <tr>
+                                            <th>
+                                                <form th:action="@{/goods/findGoodsByid}" method="post" class="form-inline">
+                                                    <label for="keyword">查询商品: </label>
+                                                    <input name="Goodsid" class="form-control" type="text" id="keyword">
+                                                    <button id="searchBtn" type="submit" class="btn btn-primary"
+                                                            style="margin-left: 5px">
+                                                        查询
+                                                    </button>
+                                                </form>
+                                            </th>
+                                            <th>
+                                                <a th:href="@{/goods/add}">
+                                                    <button id="createBtn" type="submit" class="btn btn-info" style="margin-left: 30px">
+                                                        添加商品
+                                                    </button>
+                                                </a>
+                                            </th>
+                                        </tr>
+                                    </table>
+<!--                                    <div class="form-group">-->
+<!--                                        <label for="keyword">查询商品: </label>-->
+<!--                                        <input name="keyword" class="form-control" type="text" id="keyword">-->
+<!--                                    </div>-->
+<!--                                    <button id="searchBtn" type="submit" class="btn btn-primary" style="margin-left: 5px">-->
+<!--                                        查询商品-->
+<!--                                    </button>-->
+<!--                                    <a th:href="@{/goods/add}">-->
+<!--                                        <button id="createBtn" type="submit" class="btn btn-info" style="margin-left: 30px">-->
+<!--                                            添加商品-->
+<!--                                        </button>-->
+<!--                                    </a>-->
                                 </div>
                             </div>
 <!--                            <table id="dataTable" class="table table-hover table-responsive"-->

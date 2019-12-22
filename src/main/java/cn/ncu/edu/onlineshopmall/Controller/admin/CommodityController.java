@@ -114,7 +114,7 @@ public class CommodityController {
      */
     @PostMapping("/findGoodsByid")
     public String findGoodsByid(@RequestParam("Goodsid") String Goodsid,Model model){
-        model.addAttribute("ThisGoods",commodityService.findGoodsById(Goodsid));
+        model.addAttribute("GoodsList",commodityService.findGoodsById(Goodsid));
         return "goods-list";
 
     }

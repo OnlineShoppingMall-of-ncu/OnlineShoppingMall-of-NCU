@@ -24,8 +24,9 @@ public class MainController {
     //主页面部分商品展示
     @RequestMapping("/main")
     public String showAllGoods(Model model, HttpSession session) {
-        List<Commodity> goodsList = goodsService.findAllCommodity();
 
+        int i=6;
+        List<Commodity> goodsList = goodsService.findGoodsLIimtNumber(i);
         //轮播图展示3个商品：1个随机活动商品，一个最新上架商品，一个销量最高商品
         Random rand = new Random();
         int max = goodsList.size();
@@ -33,6 +34,14 @@ public class MainController {
         shufList.add(goodsList.get(rand.nextInt(max)));
         shufList.add(goodsList.get(1));
         shufList.add(goodsList.get(2));
+        List<String> categorylist=new ArrayList<>();
+        categorylist.add("数码");
+        categorylist.add("服饰");
+        categorylist.add("家电");
+        categorylist.add("书籍");
+        categorylist.add("少儿");
+
+        session.setAttribute("categoryList",categorylist);
         model.addAttribute("shufList",shufList);
         model.addAttribute("goodsList",goodsList);
         return "index";
@@ -91,6 +100,7 @@ public class MainController {
         for(int i =0;i<num;i++){
             page[i]=i+1;
         }
+
         model.addAttribute("goodsList",goodsList);
         model.addAttribute("pages",page);
         model.addAttribute("pageSize",pageSize);
@@ -101,8 +111,8 @@ public class MainController {
 
     //------------------------------------------------------------------------------------
     //分类查询
-    @RequestMapping("/showCateGoodsByLowPrice")
-    public String showCateGoodsByLowPrice(Integer categoryId, Model model, Integer pageNum, Integer pageSize, Integer pageIndex) {
+    @RequestMapping(value = {"/getByCate","/getByCate/getByCate"})
+    public String showCateGoodsByLowPrice(String category, Model model, Integer pageNum, Integer pageSize, Integer pageIndex) {
         if (pageSize == null) {
             pageSize = 6;
         }
@@ -113,21 +123,19 @@ public class MainController {
             pageIndex = 1;
         }
 
-//        List<Goods> goodsList = goodsService.getByCategoryIdLow(categoryId,pageNum,pageSize);
-//        int total = (int) ((Page) goodsList).getTotal();
-//        int num = total%pageSize == 0? total/pageSize:total/pageSize+1;
-//        int pages[] = new int[num];
-//        for(int i =0;i<num;i++){
-//            pages[i]=i+1;
-//        }
-//
-//        List<Category> categoryList=cateService.listCategoryAndGoodNumber();
-//        model.addAttribute("categoryList",categoryList);
-//        model.addAttribute("categoryId",categoryId);
-//        model.addAttribute("goodsList",goodsList);
-//        model.addAttribute("pages",pages);
-//        model.addAttribute("pageSize",pageSize);
-//        model.addAttribute("pageIndex",pageIndex);
+        List<Commodity> goodsList = goodsService.selectByCategory(category,pageNum,pageSize);
+        int total = (int) ((Page) goodsList).getTotal();
+        int num = total%pageSize == 0? total/pageSize:total/pageSize+1;
+        int pages[] = new int[num];
+        for(int i =0;i<num;i++){
+            pages[i]=i+1;
+        }
+        model.addAttribute("category",category);
+        System.out.println(goodsList.toString());
+        model.addAttribute("goodsList",goodsList);
+        model.addAttribute("pages",pages);
+        model.addAttribute("pageSize",pageSize);
+        model.addAttribute("pageIndex",pageIndex);
         return "goods-by-category";
     }
 

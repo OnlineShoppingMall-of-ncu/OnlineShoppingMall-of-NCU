@@ -88,8 +88,6 @@
 
                             <!-- List Control View -->
                             <ul class="list-control-view list-inline">
-                                <li><a href="deals_list.html"><i class="fa fa-bars"></i></a>
-                                </li>
                                 <li><a href="deals_grid.html"><i class="fa fa-th"></i></a>
                                 </li>
                             </ul>
@@ -116,12 +114,10 @@
                                     <option>Newest items</option>
                                     <option>Best sellers</option>
                                     <option>Best rated</option>
-<!--                                    <option th:value="@{'/showCateGoodsByLowPrice?categoryId='+${categoryId}}">Price: low to high</option>-->
-<!--                                    <option th:value="@{'/showCateGoodsByHighPrice?categoryId='+${categoryId}}">Price: high to low</option>-->
                                 </select>
                             </div>
 
-                            <input type="hidden" id="categoryId" th:value="${category}">
+                            <input type="hidden" id="category" th:value="${category}">
                         </header>
                         <!-- End Page Control -->
                         <div class="row row-masnory row-tb-20">
@@ -170,14 +166,13 @@
                                             </h3>
                                             <ul class="deal-meta list-inline mb-10 color-mid">
                                                 <li><i class="ico fa fa-map-marker mr-10"></i>United State</li>
-                                                <li><i class="ico fa fa-shopping-basket mr-10"></i><span th:text="${goods.sales}"></span></li>
+                                                <li><i class="ico fa fa-shopping-basket mr-10"></i><span th:text="${goods.price}"></span></li>
                                             </ul>
-                                            <p class="text-muted mb-20" th:text="${goods.detailcate}"></p>
                                         </div>
                                         <div class="deal-price pos-r mb-15">
                                             <h3 class="price ptb-5 text-right">
                                                 <span class="price-sale" th:text="'￥'+${goods.price}"></span>
-                                                <span th:text="'￥'+${#numbers.formatDecimal(goods.price*goods.discount/10.0,3,2)}"></span>
+                                                <span th:text="'￥'+${#numbers.formatDecimal(goods.price*7/10.0,3,2)}"></span>
                                             </h3>
                                         </div>
                                     </div>
@@ -235,21 +230,7 @@
                                             </span>
 
 
-                                        <!--&lt;!&ndash;page 与 pageindex 相等的时候变亮&ndash;&gt;-->
-                                        <!--<a th:if="(${page} == ${pageIndex})" th:text="${page}" name="pagen"-->
-                                        <!--href="javascript:void(0);" onclick="pagenumm(this)" class="page-numbers current"> </a>-->
 
-                                        <!--<a th:if="(${stat.index} < ${pageIndex} and ${stat.index} > (${pageIndex}-8)) and (${page} != ${pageIndex})" th:text="${page}" name="pagen"-->
-                                        <!--href="javascript:void(0);" onclick="pagenumm(this)" class="page-numbers"> </a>-->
-
-                                        <!--<a th:if="${page} == (${pageIndex} + 8)" th:text="..." name="pagen"-->
-                                        <!--href="javascript:void(0);" onclick="pagenumm(this)" class="page-numbers"> </a>-->
-
-                                        <!--<a th:if="${page} >= 8" type="hidden"> </a>-->
-
-
-                                        <!--<a th:if="(${stat.last}) and (${page} != ${pageIndex})" th:text="${page}" name="pagen"-->
-                                        <!--href="javascript:void(0);" onclick="pagenumm(this)" class="page-numbers"> </a>-->
 
                                     </li>
 
@@ -297,7 +278,7 @@
 
         $("#pagehelper").change(function(){
             var pagesize= $("#pagehelper").find("option:selected").attr("data-amount");
-            window.location="getByCategory"+"?category="+category+"&pageNum=1"+"&pageSize="+pagesize;
+            window.location="getByCate"+"?category="+category+"&pageNum=1"+"&pageSize="+pagesize;
         });
 
         function pagenumm(object) {
@@ -308,7 +289,7 @@
             // alert(pagesize);
 
 
-            window.location="getByCategory"+"?category="+category+"&pageNum="+pagenums+"&pageSize="+pagesize+"&pageIndex="+pagenums;
+            window.location="getByCate"+"?category="+category+"&pageNum="+pagenums+"&pageSize="+pagesize+"&pageIndex="+pagenums;
 
         }
 
@@ -322,34 +303,14 @@
             var pagesize= $("#pagehelper").find("option:selected").attr("data-amount");
 
             $("#previous_page").click(function () {
-                window.location="getByCateId"+"?categoryId="+categoryId+"&pageNum="+(pageIndex - num)+"&pageSize="+pagesize+"&pageIndex="+(pageIndex - num);
+                window.location="getByCate"+"?category="+category+"&pageNum="+(pageIndex - num)+"&pageSize="+pagesize+"&pageIndex="+(pageIndex - num);
             })
 
             $("#next_page").click(function () {
-                window.location="getByCateId"+"?categoryId="+categoryId+"&pageNum="+(pageIndex + num)+"&pageSize="+pagesize+"&pageIndex="+(pageIndex + num);
+                window.location="getByCate"+"?category="+category+"&pageNum="+(pageIndex + num)+"&pageSize="+pagesize+"&pageIndex="+(pageIndex + num);
             })
 
 
-        }
-
-        function likeDealClick(goodsid,object){
-            $.ajax({
-                url:"/collection/change",
-                data:{
-                    goodsid:goodsid
-                },
-                type:"post",
-                success:function (data) {
-                    layer.msg(data.msg);
-                    if(data.msg=="添加收藏成功"){
-                        $(object).find("i").removeClass("fa-heart-o");
-                        $(object).find("i").addClass("fa-heart");
-                    }else if (data.msg=="取消收藏成功") {
-                        $(object).find("i").removeClass("fa-heart");
-                        $(object).find("i").addClass("fa-heart-o");
-                    }
-                }
-            })
         }
     </script>
 

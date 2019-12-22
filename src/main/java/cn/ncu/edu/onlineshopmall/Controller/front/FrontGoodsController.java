@@ -51,7 +51,6 @@ public class FrontGoodsController {
     @RequestMapping("/getByCategory")
     public String getByCategoryId(String category, Model model, Integer pageNum, Integer pageSize, Integer pageIndex, HttpServletRequest request){
 
-        User user= (User) request.getSession().getAttribute("Users");
         if (pageSize==null){
             pageSize=6;
         }

@@ -5,7 +5,7 @@ package cn.ncu.edu.onlineshopmall.entity;
 public class Commodity {
     private String commodityid;
     private String decription;
-    private String Category;
+    private String category;
     private float price;
 
     public String getPath() {
@@ -45,12 +45,13 @@ public class Commodity {
         this.decription = decription;
     }
 
+
     public String getCategory() {
-        return Category;
+        return category;
     }
 
     public void setCategory(String category) {
-        Category = category;
+        this.category = category;
     }
 
     public float getPrice() {
