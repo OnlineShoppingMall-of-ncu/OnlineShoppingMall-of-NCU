@@ -110,7 +110,7 @@ public class ShopcartController {
             shoppingCarService.findShopCarShopByGoodsId(commodity.getCommodityid());//删除所有购物车中关于该条商品的信息
         }
         shoppingCarService.deleteShoppingCarByUsername(user.getUsername());//把当前该用户购物车里面的商品全部删除
-        return "/person/order";
+        return "/user-index";
     }
 
 
