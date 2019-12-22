@@ -76,19 +76,13 @@
                             <div id="toolbar">
                                 <div class="form-inline" role="form">
                                     <div class="form-group">
-                                        <form action="">
+                                        <form th:action="@{/adminuser/findUserByUsername}" method="post">
                                             <label for="keyword">查询用户: </label>
-                                            <input name="keyword" class="form-control" type="text" id="keyword">
-                                        <button id="searchBtn" type="submit" class="btn btn-primary"
-                                                style="margin-left: 5px">
-                                            查询
-                                        </button>
-                                        <!--<a>-->
-                                        <!--<button id="createBtn" type="submit" class="btn btn-info" style="margin-left: 30px">-->
-                                        <!--录入-->
-                                        <!--</button>-->
-                                        <!--</a>-->
-                                        <!--  <button id="deleteBtn" type="submit" class="btn btn-danger">删除</button>-->
+                                            <input name="username" class="form-control" type="text" id="keyword">
+                                            <button id="searchBtn" type="submit" class="btn btn-primary"
+                                                    style="margin-left: 5px">
+                                                查询
+                                            </button>
                                         </form>
                                     </div>
                                 </div>

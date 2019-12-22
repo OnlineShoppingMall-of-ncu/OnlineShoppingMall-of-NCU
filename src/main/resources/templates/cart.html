@@ -110,18 +110,26 @@
                                         </tr>
                                     </thead >
                                     <tbody >
-
+                                    <tr th:each="tmp:${mycommodities}">
+                                        <td th:if="${tmp!=null}">
+                                            <div class="cart-list">
+                                                <img th:src="@{/pictures/}+${tmp.path}" alt="商品图片">
+                                                <p th:text="${tmp.commodityid}"></p>
+                                            </div>
+                                        </td>
+                                    </tr>
                                     </tbody>
                                 </table>
                                 <div class="cart-price">
                                     <h5 class="t-uppercase mb-20">总价</h5>
+
                                     <ul class="panel mb-20">
 
                                         <li>
                                             <div class="item-name">
                                                 商品总数
                                             </div>
-                                            <div class="price" id="totle_num">
+                                            <div class="price" id="totle_num" th:text="${session.goodsSum}">
                                             </div>
                                         </li>
                                         <li>
@@ -129,12 +137,12 @@
                                                 <strong class="t-uppercase">合计订单</strong>
                                             </div>
                                             <div class="price" >
-                                                <span id="total_price"></span>
+                                                <span class="cart-price" th:text="${session.allprice}"></span>
                                             </div>
                                         </li>
                                     </ul>
                                     <div class="t-right">
-                                        <a href="/order" class="btn btn-rounded btn-lg">结账</a>
+                                        <a href="/buy" class="btn btn-rounded btn-lg">结账</a>
                                     </div>
                                 </div>
                             </div>
@@ -270,147 +278,4 @@
    <div th:replace="commons/js/js_header_footer::public_js1"/>
 
 </body>
-<script>
-    $(document).ready(function () {
-        getcart();
-    });
-
-    var totalMoney = 0;
-    var totalNum = 0;
-    var oldNum = 0;
-
-    function getcart() {
-        $.ajax({
-            url: "/cartjson",
-            type: "post",
-            dataType: "json",
-            success: function (data) {
-                build_cart_table(data);
-            }
-        });
-    }
-
-    function build_cart_table(result) {
-        $("#cart_list tbody").empty();
-        var goods = result.info.shopcart;
-
-        if(goods.length === 0) {
-            var spareTd = $('<tr> <td colspan="6"> <div class="coupon" style="margin-left:37%;">购物车还是空的，快去<a href="/main" style="color:red;">首页</a>看看吧！ </div> </td> </tr>');
-            spareTd.appendTo("#cart_list tbody");
-        } else {
-            $.each(goods, function (index,item) {
-
-                var delA = $("<button></button>").addClass("close").attr("data-dismiss","alert")
-                    .append($("<i></i>").addClass("fa fa-trash-o"));
-
-                var deleteCart = $("<td></td>").addClass("product-remove product-remove_2")
-                    .append(delA);
-
-                delA.click(function () {
-                    del(item.goodsid);
-                });
-
-                var shopimage = $("<figure></figure>").addClass("product-thumb")
-                        .append($("<img/>").attr("src",/pictures/+item.imagePaths[0].path));
-
-                var goodsname = $("<h6></h6>").addClass("title mb-15 t-uppercase")
-                    .append($("<a></a>").append(item.goodsname));
-
-                var goodscategory = $("<div></div>").addClass("type font-12")
-                    .append($("<span></span>").append(item.category));
-
-
-
-                var goodsinfor = $("<td></td>")
-                    .append($("<div></div>").addClass("media-left is-hidden-sm-down")
-                        .append(shopimage))
-                    .append($("<div></div>").addClass("media-body valign-middle")
-                        .append(goodsname).append(goodscategory));
-
-                var goodsprice = $("<td></td>").addClass("product-stock-status")
-                    .append( $("<span></span>").append(item.price));
-
-                var numIput = $("<input/>").addClass("quantity-label").attr("type","number").attr("value",item.num);
-                oldNum = item.num;
-
-                numIput.change(function () {
-                    updateCart(this,item.goodsid,$(this).val(),item.price);
-                });
-
-                var num = $("<td></td>").addClass("product-stock-status")
-                    .append(numIput);
-
-                var totalPrice = $("<td></td>")
-                    .append($("<span></span>").append("￥"+item.price*item.num));
-
-                var goodsitem = $("<tr></tr>").addClass("panel alert")
-                    .append(goodsinfor)
-                    .append(goodsprice)
-                    .append(num)
-                    .append(totalPrice)
-                    .append(deleteCart)
-                    .appendTo("#cart_list tbody");
-                totalNum++;
-                totalMoney = totalMoney + item.price*item.num;
-            });
-        }
-
-        //小计
-        $("#total_price").text("￥"+totalMoney);
-        $("#totle_num").text(totalNum);
-    }
-
-    function del(goodsId){
-        $.ajax({
-            url: "/deleteCart/" + goodsId,
-            type: "DELETE",
-            success: function (result) {
-                // swal(result.msg, "","success");
-                var price = result.info.good_price;
-
-                totalMoney = totalMoney - price;
-                totalNum--;
-                $("#total_price").text("￥"+totalMoney);
-                $("#totle_num").text(totalNum);
-                $("#cart_num").text(totalNum);
-                layer.msg("删除成功")
-            },
-            error:function () {
-                swal("删除失败");
-            }
-         });
-    }
-
-    //改变商品数量更新购物车
-    function updateCart(thisObject,goodsid, newNum, goodsprice) {
-        //获取当前数量
-        // var newNum = $(".num").val();
-        $.ajax({
-            url: "/cart/update",
-            data: {
-                goodsid: goodsid,
-                num:newNum
-            },
-            method: "post",
-            success: function (result) {
-                // swal(result.msg, "", "success");
-
-                //获取全部列
-                var td = $(thisObject).parents('tr').children('td');
-                //定位到第4列的span框（某一商品的总价），并修改它的值
-                td.eq(3).find("span").text("￥"+goodsprice * newNum);
-                console.log(totalMoney + " " + newNum + " " + oldNum);
-                //修改当前全部商品的价格
-                totalMoney = totalMoney + goodsprice*(newNum - oldNum);
-                $("#total_price").text("￥"+totalMoney);
-                //更新oldNum（因为数据库已经修改，但是Ajax采用异步，所以没有重新请求数据，要手动更新oldNum）
-                oldNum = newNum;
-                layer.msg('修改成功');
-            },
-            error: function (result) {
-                swal("更新购物车失败");
-            }
-        });
-    }
-</script>
 </html>
