@@ -102,11 +102,11 @@
                                     <input type="hidden" th:value="${session.goodsSum}">
                                     <thead class="panel t-uppercase">
                                         <tr>
-                                            <th>产品名称</th>
-                                            <th>单价</th>
-                                            <th>数量</th>
-                                            <th>总价</th>
-                                            <th></th>
+                                            <th>商品</th>
+                                            <th>编号</th>
+                                            <th>描述</th>
+                                            <th>分类</th>
+                                            <th>价格</th>
                                         </tr>
                                     </thead >
                                     <tbody >
@@ -114,10 +114,26 @@
                                         <td th:if="${tmp!=null}">
                                             <div class="cart-list">
                                                 <img th:src="@{/pictures/}+${tmp.path}" alt="商品图片">
-                                                <p th:text="${tmp.commodityid}"></p>
+                                            </div>
+                                        </td>
+                                        <td th:if="${tmp!=null}">
+                                            <div class="cart-list" th:text="${tmp.commodityid}">
+                                            </div>
+                                        </td>
+                                        <td th:if="${tmp!=null}">
+                                            <div class="cart-list" th:text="${tmp.decription}">
+                                            </div>
+                                        </td>
+                                        <td th:if="${tmp!=null}">
+                                            <div class="cart-list" th:text="${tmp.category}">
+                                            </div>
+                                        </td>
+                                        <td th:if="${tmp!=null}">
+                                            <div class="cart-list" th:text="${tmp.price}">
                                             </div>
                                         </td>
                                     </tr>
+
                                     </tbody>
                                 </table>
                                 <div class="cart-price">
