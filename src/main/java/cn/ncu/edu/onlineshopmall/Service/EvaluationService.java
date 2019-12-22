@@ -25,7 +25,7 @@ public class EvaluationService {
      *通过评价唯一编号evaluationid来查询评价信息
      *  @return Evaluation
      */
-    public Evaluation findEvaluationByEvaluationid(int evaluationid){
+    public Evaluation findEvaluationByEvaluationid(String evaluationid){
         return EvaluationDao.findEvaluationByEvaluationid(evaluationid);
     }
 
@@ -51,8 +51,8 @@ public class EvaluationService {
      * @param commodityid
      * @param content
      */
-    public void InsertEvaluation(String username,String commodityid,String content){
-        EvaluationDao.InsertEvaluation(username,commodityid,content);
+    public void InsertEvaluation(String eavaluation,String username,String commodityid,String content){
+        EvaluationDao.InsertEvaluation(eavaluation,username,commodityid,content);
     }
 
     /**

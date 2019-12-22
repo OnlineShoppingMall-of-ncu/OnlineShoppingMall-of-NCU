@@ -35,7 +35,7 @@ public interface CommodityDao {
      **通过商品所属的店铺号shopid来查询商品
      */
     @Select("SELECT * FROM commodity WHERE shopid= #{shopid}")
-    List<Commodity> findCommodityByShopid(@Param("shopid") int shopid);
+    List<Commodity> findCommodityByShopid(@Param("shopid") String shopid);
 
 
 
@@ -46,7 +46,7 @@ public interface CommodityDao {
     @Insert("insert into commodity(commodityid,decription,Category,price,shopid,path)" +
             "values(#{commodityid}, #{decription}, #{Category}, #{price}, #{shopid},#{path})")
     boolean InsertCommodity(@Param("commodityid") String commodityid, @Param("decription") String decription, @Param("Category") String Category,
-                         @Param("price") float price, @Param("shopid") int shopid,@Param("path")String path);
+                         @Param("price") float price, @Param("shopid") String shopid,@Param("path")String path);
 
 
 
@@ -70,7 +70,7 @@ public interface CommodityDao {
      * 通过商品所属的店铺号shopid在表中删除这一店铺的所有商品信息
      */
     @Delete("DELETE from commodity WHERE shopid = #{shopid}")
-    boolean deleteCommodityByShopid(@Param("shopid") int shopid);
+    boolean deleteCommodityByShopid(@Param("shopid") String shopid);
 
     /**
      *

@@ -21,7 +21,7 @@ public interface ShopDao {
      **通过店铺唯一编号shopid来查询店铺信息
      */
     @Select("select * from shop where shopid=#{shopid}")
-    Shop findShopByShopid(@Param("shopid") int shopid);
+    Shop findShopByShopid(@Param("shopid") String shopid);
 
 
 
@@ -38,7 +38,7 @@ public interface ShopDao {
      */
     @Insert("insert into shop(shopid,username)" +
             "values(#{shopid}, #{username})")
-    void InsertShop(@Param("shopid") int shopid, @Param("username") String username);
+    void InsertShop(@Param("shopid") String shopid, @Param("username") String username);
 
 
 
@@ -46,7 +46,7 @@ public interface ShopDao {
      * 通过评价唯一编号shopid在表中删除一条店铺信息
      */
     @Delete("DELETE from shop WHERE shopid = #{shopid}")
-    void deleteShopByShopid(@Param("shopid") int shopid);
+    void deleteShopByShopid(@Param("shopid") String shopid);
 
 
 
@@ -55,5 +55,6 @@ public interface ShopDao {
      */
     @Delete("DELETE from shop WHERE username = #{username}")
     void deleteShopByUsername(@Param("username") String username);
+
 
 }

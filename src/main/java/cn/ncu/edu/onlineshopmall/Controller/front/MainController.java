@@ -9,7 +9,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 @Controller
 public class MainController {
@@ -21,34 +23,27 @@ public class MainController {
     @RequestMapping("/main")
     public String showAllGoods(Model model, HttpServletRequest request) {
 
-
         List<Commodity> goodsList = goodsService.findAllCommodity();
-        User user = (User) request.getSession().getAttribute("LoginUser");
-        //User user = (User) request.getSession().getAttribute("user");
-
+//        User user = (User) request.getSession().getAttribute("Users");
 
         //轮播图展示3个商品：1个随机活动商品，一个最新上架商品，一个销量最高商品
-//        Random rand = new Random();
-//        int max = goodsList.size();
-//        List<Goods> shufList = new ArrayList<>();
-//        shufList.add(goodsList.get(rand.nextInt(max)));
-//        shufList.add(recentGoods.get(0));
-//        shufList.add(hotGoods.get(0));
-//        model.addAttribute("shufList",setGoodsListCollection(shufList,user));
-//
-//
-//        model.addAttribute("categoryList",categoryList);
-//        model.addAttribute("goodsList",setGoodsListCollection(goodsList,user));
-//        model.addAttribute("recentGoods",setGoodsListCollection(recentGoods,user));
-//        model.addAttribute("hotGoods",setGoodsListCollection(hotGoods,user));
-
+        Random rand = new Random();
+        int max = goodsList.size();
+        List<Commodity> shufList = new ArrayList<>();
+        shufList.add(goodsList.get(rand.nextInt(max)));
+        shufList.add(goodsList.get(1));
+        shufList.add(goodsList.get(2));
+        model.addAttribute("shufList",shufList);
+        model.addAttribute("goodsList",goodsList);
         return "index";
     }
+
+
 
     //按关键字模糊查询商品
     @RequestMapping("/search")
     public String searchGoods(Model model, String goodsName, Integer pageSize, Integer pageNum, Integer pageIndex, HttpServletRequest request) {
-        User user = (User) request.getSession().getAttribute("user");
+        User user = (User) request.getSession().getAttribute("Users");
         if (pageSize == null) {
             pageSize = 6;
         }
@@ -78,7 +73,8 @@ public class MainController {
     //展示所有商品
     @RequestMapping("/jump")
     public String junmp(Model model, Integer pageSize, Integer pageNum, Integer pageIndex, HttpServletRequest request) {
-        User user = (User) request.getSession().getAttribute("user");
+
+        User user = (User) request.getSession().getAttribute("Users");
         if (pageSize == null) {
             pageSize = 6;
         }

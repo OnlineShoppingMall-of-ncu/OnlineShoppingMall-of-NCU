@@ -1,16 +1,17 @@
 package cn.ncu.edu.onlineshopmall.entity;
 
 public class Evaluation {
-    private int evaluationid;
+    private String evaluationid;
     private String username;
     private String commodityid;
     private String content;
 
-    public int getEvaluationid() {
+
+    public String getEvaluationid() {
         return evaluationid;
     }
 
-    public void setEvaluationid(int evaluationid) {
+    public void setEvaluationid(String evaluationid) {
         this.evaluationid = evaluationid;
     }
 
