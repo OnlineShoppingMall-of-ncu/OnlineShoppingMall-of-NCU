@@ -42,10 +42,10 @@ public interface EvaluationDao {
     /*
     **插入评估信息
      */
-    @Insert("insert into evaluation ( evaluation,username, commodityid, content)" +
-            "values(#{evaluation}, #{username}, #{commodityid}, #{content})")
+    @Insert("insert into evaluation ( evaluationid,username, commodityid, content)" +
+            "values(#{evaluationid}, #{username}, #{commodityid}, #{content})")
     void InsertEvaluation(
-            @Param("evaluation")String evaluation,
+            @Param("evaluationid")String evaluationid,
             @Param("username") String username,
             @Param("commodityid") String commodityid,
             @Param("content") String content);

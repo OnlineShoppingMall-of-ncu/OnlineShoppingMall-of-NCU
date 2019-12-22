@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorate="~{/layout}">
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=0">
+
+		<title>订单管理</title>
+
+		<div th:replace="commons/css/css_personal::personal_css"></div>
+		<link th:href="@{/personal/css/orstyle.css}" rel="stylesheet" type="text/css">
+		<div th:replace="commons/css/css_header_footer :: public_css1"></div>
+		<div th:replace="commons/js/js_header_footer :: public_js1"></div>
+		<div th:replace="commons/js/js_personal::personal_js"></div>
+	</head>
+
+	<body>
+		<!--头 -->
+		<div th:replace="commons/header::public_header"></div>
+
+		<!-- Preloader -->
+		<div id="preloader" class="preloader">
+			<div class="loader-cube">
+				<div class="loader-cube__item1 loader-cube__item"></div>
+				<div class="loader-cube__item2 loader-cube__item"></div>
+				<div class="loader-cube__item4 loader-cube__item"></div>
+				<div class="loader-cube__item3 loader-cube__item"></div>
+			</div>
+		</div>
+		<!-- End Preloader -->
+
+			<b class="line"></b>
+		<div class="center">
+			<div class="col-main">
+
+                     <div th:replace="commons/personal_footer::personal_menu"></div>
+					<table id="dataTable" class="table table-hover table-responsive"
+						   style="table-layout: fixed" >
+						<tread>
+							<tr>
+
+								<th>商品编号</th>
+								<th>商品所在店铺号</th>
+								<th>添加评论</th>
+							</tr>
+						</tread>
+						<tbody>
+						<tr th:each="tmp:${orderlist}">
+							<td th:text="${tmp.commodityid}"></td>
+							<td th:text="${tmp.shopid}"></td>
+							<td>
+								<!--评价按钮-->
+								<a class="btn btn-sm btn-primary" th:href="@{/gotoaddevaluation}+${tmp.commodityid}">点击评论</a>
+
+							</td>
+						</tr>
+
+						</tbody>
+
+					</table>
+
+			</div>
+
+		</div>
+
+
+	</body>
+
+
+
+
+</html>
